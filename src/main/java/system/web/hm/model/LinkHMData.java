@@ -16,7 +16,6 @@ final public class LinkHMData {
     public void initPutHMModel(String url, LinkHMModel o) {
         if (open) {
             requestURLMap.put(url, o);
-            System.out.println("单例化一个连接类" + url + "// method:" + o.hClass.getName() + "//" + o.method.getName() + "// istatic:" + o.isStaticMethod);
         }
     }
 

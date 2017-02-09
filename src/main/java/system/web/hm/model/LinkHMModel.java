@@ -24,7 +24,6 @@ public class LinkHMModel {
      */
     public LinkHMModel(
             FilterModel[] fmTop, ValidateModel vm, FilterModel[] fmCenter, Class hClass, Method method, boolean isStaticMethod
-//            , int return_way
             , FilterModel[] fmButtom, int instruction
     ) {
         this.hClass = hClass;
@@ -32,25 +31,24 @@ public class LinkHMModel {
         this.fmTop = fmTop;
         this.fmCenter = fmCenter;
         this.vm = vm;
-//        this.SEND_URL_WAY = return_way;
         this.fmButtom = fmButtom;
         this.instruction = instruction;
         this.isStaticMethod = isStaticMethod;
-        if (null != fmTop) {
-            for (FilterModel fm : fmTop) {
-                System.out.println(fm.getClass().getName());
-            }
-        }
-        if (null != fmCenter) {
-            for (FilterModel fm : fmCenter) {
-                System.out.println(fm.getClass().getName());
-            }
-        }
-        if (null != fmButtom) {
-            for (FilterModel fm : fmButtom) {
-                System.out.println(fm.getClass().getName());
-            }
-        }
+//        if (null != fmTop) {
+//            for (FilterModel fm : fmTop) {
+//                System.out.println(fm.getClass().getName());
+//            }
+//        }
+//        if (null != fmCenter) {
+//            for (FilterModel fm : fmCenter) {
+//                System.out.println(fm.getClass().getName());
+//            }
+//        }
+//        if (null != fmButtom) {
+//            for (FilterModel fm : fmButtom) {
+//                System.out.println(fm.getClass().getName());
+//            }
+//        }
     }
 
     public final Class hClass;

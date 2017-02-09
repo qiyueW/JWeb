@@ -60,6 +60,6 @@ public class JWebListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("容器注销了！！！！！！！！fuck you!");
+        System.out.println("容器注销了！！！！！！！！wo qu!");
     }
 }

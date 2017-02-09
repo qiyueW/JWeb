@@ -22,7 +22,7 @@ public class ValidateModelData {
     }
 
     public void putMap(Class c, ValidateModel vdm) {
-        System.out.println("校验映射：" + c.getSimpleName() + "   *" + vdm.getClass().getName());
+//        System.out.println("校验映射：" + c.getSimpleName() + "   *" + vdm.getClass().getName());
         validate.put(c, vdm);
     }
 

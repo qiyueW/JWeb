@@ -32,7 +32,7 @@ public class RegexData<T> {
                     : strs[i] + "{1}"
             );
         }
-        System.out.println(sb);
+//        System.out.println(sb);
         return sb.toString();
     }
 
@@ -45,7 +45,7 @@ public class RegexData<T> {
     }
 
     private void findResource(RegexObject<Class> ro, Set<Class> sresult, final String url, final String method) {
-        System.out.println("执行绑定校验：" + ro.reget + "//" + url + "//" + method);
+//        System.out.println("执行绑定校验：" + ro.reget + "//" + url + "//" + method);
         switch (ro.sort) {
             case SORT_METHOD: {
                 if (Pattern.compile(ro.reget, Pattern.CASE_INSENSITIVE).matcher(method).matches()) {
