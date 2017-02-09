@@ -19,6 +19,7 @@ final public class HMModelEngine {
 
     private static final FilterEngine filterEngine = new FilterEngine();
 ////跳转时，产生的异常
+
     public static final void doLinkEngine(final String url, JWeb jw)
             throws ServletException, IOException {
         try {
@@ -69,6 +70,7 @@ final public class HMModelEngine {
                 case 8://HM+尾部强制过滤
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -101,6 +103,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -126,6 +129,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -139,6 +143,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -152,6 +157,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -174,6 +180,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -186,6 +193,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));
@@ -198,6 +206,7 @@ final public class HMModelEngine {
                     }
                     if (o.isStaticMethod) {
                         o.method.invoke(null, jw);
+                        filterEngine.doEngine_error(jw, o.fmButtom);
                         return;
                     }
                     o.method.invoke(o.hClass.getConstructor(JWeb.class).newInstance(jw));

@@ -25,7 +25,7 @@ public abstract class ValidateModel {
         if (url.isEmpty()) {
             this.url = "";
         } else {
-            this.url = WebContext.getWebContext().ContextPath + url
+            this.url = url
                     + (url.contains(".") ? "" : WebContext.getWebContext().webConfig.HM_SUFFIX);
         }
     }

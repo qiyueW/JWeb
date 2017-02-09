@@ -29,7 +29,7 @@ final public class JWeb extends VOEngine implements ReturnType{
 
     public void forward(final String url) {
         try {
-            this.request.getRequestDispatcher(container.ContextPath + url).forward(request, response);
+            this.request.getRequestDispatcher(url).forward(request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(JWeb.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,7 +37,7 @@ final public class JWeb extends VOEngine implements ReturnType{
 
     public void forwardServlet(final String url) {
         try {
-            this.request.getRequestDispatcher(container.ContextPath + url + container.webConfig.HM_SUFFIX).forward(request, response);
+            this.request.getRequestDispatcher(url + container.webConfig.HM_SUFFIX).forward(request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(JWeb.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,7 +45,7 @@ final public class JWeb extends VOEngine implements ReturnType{
 
     public void sendRedirect(final String url) {
         try {
-            this.response.sendRedirect(container.ContextPath + url);
+            this.response.sendRedirect(url);
         } catch (IOException ex) {
             Logger.getLogger(JWeb.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @author wangchunzi
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD})
 public @interface Validate {
 
     public Class value();
