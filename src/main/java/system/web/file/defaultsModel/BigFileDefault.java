@@ -13,5 +13,6 @@ public class BigFileDefault extends FileModel {
         fc.path_save = "upfile/img/";
         fc.fileSize_max = -1;
         fc.fileNameSuffix_alloy = "";
+        fc.fileSizeThreshold=2*1024*1024;
     }
 }

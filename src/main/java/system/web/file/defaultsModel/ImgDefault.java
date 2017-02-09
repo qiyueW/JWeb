@@ -1,6 +1,5 @@
 package system.web.file.defaultsModel;
 
-import system.web.WebContext;
 import system.web.file.FileModel;
 
 /**

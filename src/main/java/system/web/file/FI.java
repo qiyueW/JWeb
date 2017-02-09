@@ -30,7 +30,7 @@ public class FI {
     @Override
     public String toString() {
         return new StringBuilder()
-                .append("{\"fileName\";\"").append(fileName)
+                .append("{\"fileName\":\"").append(fileName)
                 .append("\",\"saveName\":\"").append(saveName)
                 .append("\",\"path_fileName\":\"").append(path_saveName)
                 .append("\",\"isok\":\"").append(isok)
