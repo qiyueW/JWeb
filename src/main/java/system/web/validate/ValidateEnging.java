@@ -16,7 +16,7 @@ import system.web.validate.model.ValidateResultModel;
 final public class ValidateEnging {
     
     public static boolean doValidateAndResultError(JWeb jw, ValidateModel vm) throws ServletException, IOException {
-        ValidateResultModel vr = new ValidateResultModel(vm.url.isEmpty(), vm.msg_key);
+        ValidateResultModel vr = new ValidateResultModel(vm.returnJSON, vm.msg_key,vm.jsonModel);
         String req_param;
         for (Map.Entry<String, ValidateFieldModel> entry : vm.getValidateFieldModel().entrySet()) {
             req_param = jw.request.getParameter(entry.getKey());

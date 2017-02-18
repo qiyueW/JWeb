@@ -11,20 +11,22 @@ public class ValidateResultModel {
 
     private final StringBuilder json = new StringBuilder();
     private final Map<String, String> map = new HashMap();
-    private final boolean urlIsEmpty;
+    private final boolean returnJSON;
     private final String key;
-    
-    public ValidateResultModel(boolean urlIsEmpty,String key) {
-        this.urlIsEmpty = urlIsEmpty;
-        this.key=key;
+    private final String jsonModel;
+
+    public ValidateResultModel(final boolean returnJSON, final String key, final String str) {
+        this.returnJSON = returnJSON;
+        this.key = key;
+        this.jsonModel = str;
     }
 
     public ValidateResultModel put(final String name, final String msg) {
 
-//        if (urlIsEmpty) {
-        json.append(",{\"").append(name).append("\":\"").append(msg).append("\"}");
-//            return this;
-//        }
+        if (this.returnJSON) {
+            json.append(",\"").append(name).append("\":\"").append(msg).append("\"");
+            return this;
+        }
         map.put(name, msg);
         return this;
 
@@ -38,7 +40,7 @@ public class ValidateResultModel {
      * @return
      */
     public <T> T getErrorMsg(Class<T> t) {
-        return (T) (this.urlIsEmpty ? "[" + json.substring(1) + "]" : this.map);
+        return (T) (this.returnJSON ? "{" + json.substring(1) + "}" : this.map);
     }
 
     public boolean isError() {
@@ -50,7 +52,7 @@ public class ValidateResultModel {
     }
 
     public String getMsgByJson() {
-        return this.key.isEmpty()?"[" + json.substring(1) + "]":"{\""+this.key+"\":["+json.substring(1) + "]}";
+        return this.jsonModel.replaceFirst("#", "{" + json.substring(1) + "}");
     }
 
 }
