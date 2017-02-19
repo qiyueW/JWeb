@@ -118,9 +118,9 @@ public final class FilterEngine {
                     return true;
                 }
                 fm[topindex++].doFilter(jw);
-                return false;
+                return jw.isEndFilter();
             case 0:
-                return false;
+                return jw.isEndFilter();
             default: {
                 for (; topindex < fm.length; topindex++) {
                     if (jw.isEndFilter()) {
@@ -128,7 +128,7 @@ public final class FilterEngine {
                     }
                     fm[topindex++].doFilter(jw);
                 }
-                return false;
+                return jw.isEndFilter();
             }
         }
     }
