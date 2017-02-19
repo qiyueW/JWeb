@@ -71,7 +71,7 @@ public class InitLinkData {
             filterObject.clear();
             fs = c.getMethods();
             url = ""; //存入@H+@M的完整路径 初始化
-            vm = null; //校验对象的数据中心 校验对象初始化
+            
             validate_instruction = 0;//校验指令 
 
             //执行过滤器判断
@@ -83,6 +83,7 @@ public class InitLinkData {
             String hV = ((H) c.getAnnotation(H.class)).value().trim();
 
             for (Method f : fs) {
+                vm = null; //校验对象的数据中心 校验对象初始化
                 at_M = (M) f.getAnnotation(M.class);
                 at_Validate = (Validate) f.getAnnotation(Validate.class);
 
