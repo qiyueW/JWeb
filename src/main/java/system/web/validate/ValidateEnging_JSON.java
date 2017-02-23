@@ -31,7 +31,7 @@ final public class ValidateEnging_JSON {
             for (Object obj : list) {
                 for (FieldInfo fi : ci.fieldInfo) {
                     vf = vm.getValidateFieldModel().get(fi.fiel_name);
-                    value = fi.get(fi.field.get(obj), null);
+                    value = fi.get(obj, null);
                     if (null == value) {
                         if (vf.isMust) {
                             vr.put(fi.fiel_name, "为必须检验的，但不存在此参数(" + fi.fiel_name + ")");
@@ -57,7 +57,7 @@ final public class ValidateEnging_JSON {
             ValidateFieldModel vf;
             for (FieldInfo fi : ci.fieldInfo) {
                 vf = vm.getValidateFieldModel().get(fi.fiel_name);
-                value = fi.get(fi.field.get(obj), null);
+                value = fi.get(obj, null);
                 if (null == value) {
                     if (vf.isMust) {
                         vr.put(fi.fiel_name, "为必须检验的，但不存在此参数(" + fi.fiel_name + ")");
