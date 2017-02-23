@@ -39,20 +39,20 @@ public abstract class VO_Father {
         return JEM.getObjectBySimpleJsonData(x, str, dateformat, timeformat);
     }
 
-    final protected static <T> List<T> f_getListBySimpleJsonData_beanAnnotationTimeFormat(HttpServletRequest request, Class<T> x, final String requestName) {
+    final protected static <T> List<T> f_getListBySimpleJsonData__CI_TIME(HttpServletRequest request, Class<T> x, final String requestName) {
         String str = request.getParameter(requestName);
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getListBySimpleJsonData(x, str);
+        return JEM.getListBySimpleJsonData_CI_TIME(x, str);
     }
 
-    final protected static <T> T f_getObjectBySimpleJsonData_beanAnnotationTimeFormat(HttpServletRequest request, Class<T> x, final String requestName) {
+    final protected static <T> T f_getObjectBySimpleJsonData_CI_TIME(HttpServletRequest request, Class<T> x, final String requestName) {
         String str = request.getParameter(requestName);
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getObjectBySimpleJsonData(x, str);
+        return JEM.getObjectBySimpleJsonData_CI_TIME(x, str);
     }
 
     protected static final <T> T getObject(HttpServletRequest request, Class<T> x, final String dateformat, final String timeformat) {

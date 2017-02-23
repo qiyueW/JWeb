@@ -165,13 +165,13 @@ public class VOEngine extends VO_Father implements VO_OneModel, VO_BeanModel {
     }
 
     @Override
-    public <T> T getObjectBySimpleJsonData_beanAnnotationTimeFormat(Class<T> x, String requestName) {
-        return f_getObjectBySimpleJsonData_beanAnnotationTimeFormat(request, x, requestName);
+    public <T> T getObjectBySimpleJsonData_CI_TIME(Class<T> x, String requestName) {
+        return f_getObjectBySimpleJsonData_CI_TIME(request, x, requestName);
     }
 
     @Override
-    public <T> List<T> getListBySimpleJsonData_beanAnnotationTimeFormat(Class<T> x, String requestName) {
-        return f_getListBySimpleJsonData_beanAnnotationTimeFormat(request, x, requestName);
+    public <T> List<T> getListBySimpleJsonData_CI_TIME(Class<T> x, String requestName) {
+        return f_getListBySimpleJsonData__CI_TIME(request, x, requestName);
     }
 
 }

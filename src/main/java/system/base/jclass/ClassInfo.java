@@ -1,5 +1,6 @@
 package system.base.jclass;
 
+import java.lang.reflect.Field;
 import static system.base.IDCenter.getIID;
 import system.base.jclass.field.FieldInfo;
 
@@ -15,6 +16,13 @@ final public class ClassInfo {
      * 例如: c1,c2,c3,c4....cn格式 第一个一定是ID
      */
     public final String table_column_name;
+
+    final public FieldInfo getFieldInfo(final String name) {
+        for(FieldInfo fi:fieldInfo){
+            if(fi.fiel_name.equals(name))return fi;
+        }
+        return null;
+    }
 
     public ClassInfo(String table_name, FieldInfo[] fieldInfo) {
         this.table_name = table_name;
@@ -58,6 +66,5 @@ final public class ClassInfo {
         }
         return new String[]{"(" + value + ")", id};
     }
-    
- 
+
 }

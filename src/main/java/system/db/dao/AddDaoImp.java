@@ -102,30 +102,54 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
 
     @Override
     public <O, O2> int[] add_OO(O o, O2... o2) {
-        int length=o2.length+1;
+        int length = o2.length + 1;
         ClassInfo ci = ClassFactory.get(o.getClass());
         String[] osql = sql.addAndReturnID(o2);
         String[] o2sql = new String[length];
-        o2sql[0]=osql[0];
-        
+        o2sql[0] = osql[0];
+
         for (int i = 1; i < length; i++) {
-            o2sql[i]=sql.addOne_replace(o2[i-1], ci.fieldInfo[0].fiel_name, osql[1]);
+            o2sql[i] = sql.addOne_replace(o2[i - 1], ci.fieldInfo[0].fiel_name, osql[1]);
         }
         return adus.executeBatch(o2sql);
     }
 
     @Override
     public <O, M> int[] add_OM(O o, List<M>... m) {
-        int length=m.length+1;
+        int length = m.length + 1;
         ClassInfo ci = ClassFactory.get(m[0].get(0).getClass());
-        
+
         String[] osql = sql.addAndReturnID(o);
         String[] o2sql = new String[length];
-        o2sql[0]=osql[0];
+        o2sql[0] = osql[0];
         for (int i = 1; i < length; i++) {
-            o2sql[i]=sql.addVast_replace(m[i-1], ci.fieldInfo[0].fiel_name, osql[1]);
+            o2sql[i] = sql.addVast_replace(m[i - 1], ci.fieldInfo[0].fiel_name, osql[1]);
         }
         return adus.executeBatch(o2sql);
     }
 
+    @Override
+    public int addOneByCondition(Object obj, String denyCondition, String... unique) {
+        if (null == denyCondition || denyCondition.isEmpty()) {
+            return this.addOne(obj, unique);
+        }
+        ClassInfo ci = ClassFactory.get(obj.getClass());
+        if (null == ci.fieldInfo[0].get(this.adus.executeQueryOne(obj.getClass(), denyCondition), null)) {
+            return -1;
+        }
+        return this.addOne(obj, unique);
+    }
+
+    @Override
+    public <T> int addVastByCondition(List<T> objs, String denyCondition, String... unique) {
+        if (null == denyCondition || denyCondition.isEmpty()) {
+            return this.addVast(objs, unique);
+        }
+        Class c = objs.get(0).getClass();
+        ClassInfo ci = ClassFactory.get(c);
+        if (null == ci.fieldInfo[0].get(this.adus.executeQueryOne(c, denyCondition), null)) {
+            return -1;
+        }
+        return this.addVast(objs, unique);
+    }
 }

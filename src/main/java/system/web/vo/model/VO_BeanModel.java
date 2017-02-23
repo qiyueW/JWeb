@@ -50,9 +50,9 @@ public interface VO_BeanModel {
      * @param requestName 参数key
      * @return
      */
-    public <T> T getObjectBySimpleJsonData_beanAnnotationTimeFormat(Class<T> x, final String requestName);
+    public <T> T getObjectBySimpleJsonData_CI_TIME(Class<T> x, final String requestName);
 
-    public <T> List<T> getListBySimpleJsonData_beanAnnotationTimeFormat(Class<T> x, final String requestName);
+    public <T> List<T> getListBySimpleJsonData_CI_TIME(Class<T> x, final String requestName);
 
     /**
      * 解析参数值的json数据。并装入T实例中(通过参数key取出String型json数据) 如果存在时间/日期，采用自定义的格式解析
