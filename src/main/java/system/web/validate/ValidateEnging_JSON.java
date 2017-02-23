@@ -31,6 +31,7 @@ final public class ValidateEnging_JSON {
             for (Object obj : list) {
                 for (FieldInfo fi : ci.fieldInfo) {
                     vf = vm.getValidateFieldModel().get(fi.fiel_name);
+                    if(null==vf)continue;
                     value = fi.get(obj, null);
                     if (null == value) {
                         if (vf.isMust) {
@@ -57,6 +58,7 @@ final public class ValidateEnging_JSON {
             ValidateFieldModel vf;
             for (FieldInfo fi : ci.fieldInfo) {
                 vf = vm.getValidateFieldModel().get(fi.fiel_name);
+                if(null==vf)continue;
                 value = fi.get(obj, null);
                 if (null == value) {
                     if (vf.isMust) {
