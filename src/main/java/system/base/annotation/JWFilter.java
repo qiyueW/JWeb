@@ -1,16 +1,17 @@
-package system.web.hm.annotation;
+package system.base.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ *
+ * @author wangchunzi
+ */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface M {
+@Target({ElementType.TYPE, ElementType.METHOD})
+public @interface JWFilter {
 
-    public String value() default "";//路径
-
-    public String url() default "";//路径
-
+    public Class[] value();
 }

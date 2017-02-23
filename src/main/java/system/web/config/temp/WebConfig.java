@@ -1,5 +1,7 @@
 package system.web.config.temp;
 
+
+
 /**
  *
  * @author wangchunzi
@@ -50,9 +52,10 @@ public class WebConfig {
     public String SCRIPT_REJECT_KEY = "<scr";
 
     public String SCRIPT_REJECT_VALUE = "&#60;scr";
-    
+
     public String DATE_FORMAT = "yyyy-MM-dd";
-    
+
     public String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    
+
+    public Class<? extends system.web.json.JsonEngineModel> jsonEngineModel=system.web.json.JsonEngineDefault.class;
 }

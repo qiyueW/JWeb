@@ -1,14 +1,17 @@
-package system.web.hm.annotation;
+package system.base.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ *
+ * @author wangchunzi
+ */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface H {
+@Target(ElementType.FIELD)
+public @interface ID {
 
-    public String value() default "";//模块
-
+    public String value() default "";
 }

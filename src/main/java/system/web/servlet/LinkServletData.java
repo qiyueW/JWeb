@@ -5,9 +5,9 @@ import java.util.Map;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import system.web.XY_Instruction;
-import system.web.filter.annotation.JWFilter;
+import system.base.annotation.JWFilter;
 import system.web.filter.chain.config.LinkFilters;
-import system.web.validate.annotation.Validate;
+import system.base.annotation.Validate;
 import system.web.validate.model.InitValidateModel;
 import system.web.validate.model.ValidateModel;
 

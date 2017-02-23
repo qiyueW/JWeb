@@ -2,8 +2,12 @@ package system.web.validate;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
+import system.base.jclass.ClassFactory;
+import system.base.jclass.ClassInfo;
 import system.web.JWeb;
 import system.web.validate.model.ValidateFieldModel;
 import system.web.validate.model.ValidateModel;
@@ -14,9 +18,16 @@ import system.web.validate.model.ValidateResultModel;
  * @author wangchunzi
  */
 final public class ValidateEnging {
-    
+
     public static boolean doValidateAndResultError(JWeb jw, ValidateModel vm) throws ServletException, IOException {
-        ValidateResultModel vr = new ValidateResultModel(vm.returnJSON, vm.msg_key,vm.jsonModel);
+        if (vm.isJSONEngine()) {
+            try {
+                return ValidateEnging_JSON.doValidateAndResultError(jw, vm);
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                Logger.getLogger(ValidateEnging.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        ValidateResultModel vr = new ValidateResultModel(vm.returnJSON, vm.msg_key, vm.jsonModel);
         String req_param;
         for (Map.Entry<String, ValidateFieldModel> entry : vm.getValidateFieldModel().entrySet()) {
             req_param = jw.request.getParameter(entry.getKey());

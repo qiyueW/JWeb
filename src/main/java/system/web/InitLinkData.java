@@ -1,20 +1,20 @@
 package system.web;
 
-import system.web.hm.annotation.M;
-import system.web.hm.annotation.H;
+import system.base.annotation.M;
+import system.base.annotation.H;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServlet;
-import system.web.filter.annotation.JWFilter;
+import system.base.annotation.JWFilter;
 import system.web.filter.chain.config.ConfigurationFilter;
 import system.web.filter.chain.config.ConfigurationFilterService;
 import system.web.filter.chain.config.LinkFilters;
 import system.web.hm.model.LinkHMModel;
 import system.web.servlet.Servlet;
 import system.web.validate.model.InitValidateModel;
-import system.web.validate.annotation.Validate;
+import system.base.annotation.Validate;
 import system.web.validate.model.ValidateModel;
 
 /**

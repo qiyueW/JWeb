@@ -2,6 +2,7 @@ package system.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import system.web.vo.VOEngine;
  *
  * @author wangchunzi
  */
-final public class JWeb extends VOEngine implements ReturnType{
+final public class JWeb extends VOEngine implements ReturnType {
 
     public final HttpServletRequest request;
     public final HttpServletResponse response;
@@ -62,6 +63,15 @@ final public class JWeb extends VOEngine implements ReturnType{
      */
     public boolean isEndFilter() {
         return endFilter;
+    }
+
+    public <T> T get(T t, String key) {
+        Object obj = this.request.getAttribute(key);
+        return null == obj ? null : (T) obj;
+    }
+    
+    public void set(String key, Object obj) {
+        this.request.setAttribute(key, obj);
     }
 
     public JWeb(HttpServletRequest request, HttpServletResponse response) {

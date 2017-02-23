@@ -1,6 +1,7 @@
 package system.web.vo;
 
 import java.util.Date;
+import java.util.List;
 import system.web.WebContext;
 import system.web.vo.model.VO_BeanModel;
 import system.web.vo.model.VO_Father;
@@ -144,12 +145,33 @@ public class VOEngine extends VO_Father implements VO_OneModel, VO_BeanModel {
     }
 
     @Override
-    public <T> T getObjectByJsonData(Class<T> x, final String requestName) {
-        return getObjectByJsonData(request, x, requestName, WebContext.getWebContext().webConfig.DATE_FORMAT, WebContext.getWebContext().webConfig.TIME_FORMAT);
+    public <T> List<T> getListBySimpleJsonData(Class<T> x, String requestName) {
+        return getListBySimpleJsonData(request, x, requestName, WebContext.getWebContext().webConfig.DATE_FORMAT, WebContext.getWebContext().webConfig.TIME_FORMAT);
     }
-    
+
     @Override
-    public <T> T getObjectByJsonData(Class<T> x, final String requestName, final String dateFormat, final String timeFormat) {
-        return getObjectByJsonData(request, x, requestName, dateFormat, timeFormat);
+    public <T> List<T> getListBySimpleJsonData(Class<T> x, String requestName, String dateformat, String timeformat) {
+        return getListBySimpleJsonData(request, x, requestName, dateformat, timeformat);
     }
+
+    @Override
+    public <T> T getObjectBySimpleJsonData(Class<T> x, String requestName) {
+        return getObjectBySimpleJsonData(request, x, requestName, WebContext.getWebContext().webConfig.DATE_FORMAT, WebContext.getWebContext().webConfig.TIME_FORMAT);
+    }
+
+    @Override
+    public <T> T getObjectBySimpleJsonData(Class<T> x, String requestName, String dateformat, String timeformat) {
+        return getObjectBySimpleJsonData(request, x, requestName, dateformat, timeformat);
+    }
+
+    @Override
+    public <T> T getObjectBySimpleJsonData_beanAnnotationTimeFormat(Class<T> x, String requestName) {
+        return f_getObjectBySimpleJsonData_beanAnnotationTimeFormat(request, x, requestName);
+    }
+
+    @Override
+    public <T> List<T> getListBySimpleJsonData_beanAnnotationTimeFormat(Class<T> x, String requestName) {
+        return f_getListBySimpleJsonData_beanAnnotationTimeFormat(request, x, requestName);
+    }
+
 }

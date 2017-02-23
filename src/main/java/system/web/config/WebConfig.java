@@ -54,6 +54,7 @@ public class WebConfig {
     public final String DATE_FORMAT;
 
     public final String TIME_FORMAT;
+    public final Class<? extends system.web.json.JsonEngineModel> jsonEngineModel;
 
     public WebConfig(system.web.config.temp.WebConfig temp) {
         this.ENCODE = temp.ENCODE;
@@ -79,6 +80,7 @@ public class WebConfig {
 
         this.DATE_FORMAT = temp.DATE_FORMAT;
         this.TIME_FORMAT = temp.TIME_FORMAT;
+        this.jsonEngineModel = temp.jsonEngineModel;
     }
 
 }
