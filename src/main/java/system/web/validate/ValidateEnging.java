@@ -2,12 +2,8 @@ package system.web.validate;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
-import system.base.jclass.ClassFactory;
-import system.base.jclass.ClassInfo;
 import system.web.JWeb;
 import system.web.validate.model.ValidateFieldModel;
 import system.web.validate.model.ValidateModel;
@@ -24,7 +20,7 @@ final public class ValidateEnging {
             try {
                 return ValidateEnging_JSON.doValidateAndResultError(jw, vm);
             } catch (IllegalArgumentException | IllegalAccessException ex) {
-                Logger.getLogger(ValidateEnging.class.getName()).log(Level.SEVERE, null, ex);
+               return true;
             }
         }
         ValidateResultModel vr = new ValidateResultModel(vm.returnJSON, vm.msg_key, vm.jsonModel);
