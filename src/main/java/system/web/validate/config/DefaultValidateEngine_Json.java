@@ -135,7 +135,7 @@ final public class DefaultValidateEngine_Json extends JsonValidateEngineModel {
             }
         }
         if (mustcount < vm.getMustValidateFieldCount()) {
-            vr.put("-1", "存在必须检验的项。但没有值的存在");
+            vr.put(vm.getValidateJsonModel().getCountIsError_MessageKEY(), vm.getValidateJsonModel().getCountIsError_Message());
         }
         if (vr.isError()) {
             jw.request.removeAttribute(vm.getValidateJsonModel().getJsonKey());
