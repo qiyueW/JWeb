@@ -1,7 +1,5 @@
 package system.web.config.temp;
 
-
-
 /**
  *
  * @author wangchunzi
@@ -57,5 +55,10 @@ public class WebConfig {
 
     public String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    public Class<? extends system.web.json.JsonEngineModel> jsonEngineModel=system.web.json.JsonEngineDefault.class;
+    public Class<? extends system.web.json.JsonEngineModel> jsonEngineModel = system.web.json.JsonEngineDefault.class;
+    
+    public Class<? extends system.web.validate.config.JsonValidateEngineModel> validateEngine_json = system.web.validate.config.DefaultValidateEngine_Json.class;
+
+    public Class<? extends system.web.validate.config.ParamValidateEngineModel> validateEngine_param = system.web.validate.config.DefaultValidateEngine_Param.class;
+
 }

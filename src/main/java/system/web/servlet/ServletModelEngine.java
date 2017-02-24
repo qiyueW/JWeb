@@ -14,7 +14,7 @@ import system.web.validate.ValidateEnging;
  */
 final public class ServletModelEngine {
 
-    private static final FilterEngine filterEngine = new FilterEngine();
+    private static final FilterEngine FILTER_ENGINE = new FilterEngine();
 ////跳转时，产生的异常
 
     public static final void doLinkEngine(ServletModel o, JWeb jw, javax.servlet.FilterChain chain)
@@ -28,7 +28,7 @@ final public class ServletModelEngine {
                     break;
                 case 1:
                     //顶部过滤+HM
-                    if (filterEngine.doEngine_error(jw, o.fmTop)) {
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop)) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
@@ -40,7 +40,7 @@ final public class ServletModelEngine {
                     chain.doFilter(jw.request, jw.response);
                     break;
                 case 4://中部过滤+HM
-                    if (filterEngine.doEngine_error(jw, o.fmCenter)) {
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmCenter)) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
@@ -48,66 +48,66 @@ final public class ServletModelEngine {
 
                 case 8://HM+尾部强制过滤
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
 
                 case 3://顶部过滤+校验+HM
-                    if (filterEngine.doEngine_error(jw, o.fmTop) || ValidateEnging.doValidateAndResultError(jw, o.vm)) {
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop) || ValidateEnging.doValidateAndResultError(jw, o.vm)) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
                     break;
                 case 5://顶部+中部过滤+HM
-                    if (filterEngine.doEngine_error(jw, o.fmTop) || filterEngine.doEngine_error(jw, o.fmCenter)) {
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop) || FILTER_ENGINE.doEngine_error(jw, o.fmCenter)) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
                     break;
                 case 9:
-                    if (filterEngine.doEngine_error(jw, o.fmTop)) {
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop)) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
                 case 7:
-                    if (filterEngine.doEngine_error(jw, o.fmTop)//顶部过滤
-                            || ValidateEnging.doValidateAndResultError(jw, o.vm) || filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop)//顶部过滤
+                            || ValidateEnging.doValidateAndResultError(jw, o.vm) || FILTER_ENGINE.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
                     break;
                 case 11:
-                    if (filterEngine.doEngine_error(jw, o.fmTop)//顶部过滤
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop)//顶部过滤
                             || ValidateEnging.doValidateAndResultError(jw, o.vm) //|| filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
                 case 13:
-                    if (filterEngine.doEngine_error(jw, o.fmTop)//顶部过滤
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop)//顶部过滤
                             //                                || ValidateEnging.doValidateAndResultError(jw, o.vm, o) 
-                            || filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
+                            || FILTER_ENGINE.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
                 case 15:
-                    if (filterEngine.doEngine_error(jw, o.fmTop)//顶部过滤
-                            || ValidateEnging.doValidateAndResultError(jw, o.vm) || filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmTop)//顶部过滤
+                            || ValidateEnging.doValidateAndResultError(jw, o.vm) || FILTER_ENGINE.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
                 case 6:
-                    if (ValidateEnging.doValidateAndResultError(jw, o.vm) || filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
+                    if (ValidateEnging.doValidateAndResultError(jw, o.vm) || FILTER_ENGINE.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
@@ -118,28 +118,28 @@ final public class ServletModelEngine {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
 
                 case 14:
-                    if (ValidateEnging.doValidateAndResultError(jw, o.vm) || filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
+                    if (ValidateEnging.doValidateAndResultError(jw, o.vm) || FILTER_ENGINE.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
                 case 12:
-                    if (filterEngine.doEngine_error(jw, o.fmCenter)//中部过滤
+                    if (FILTER_ENGINE.doEngine_error(jw, o.fmCenter)//中部过滤
                             ) {
                         return;
                     }
                     chain.doFilter(jw.request, jw.response);
-                    filterEngine.doEngine_error(jw, o.fmButtom);
+                    FILTER_ENGINE.doEngine_error(jw, o.fmButtom);
                     break;
             }
 
-        } catch (IllegalArgumentException | SecurityException ex) {
+        } catch (IllegalArgumentException | SecurityException | IllegalAccessException ex) {
             Logger.getLogger(ServletModelEngine.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

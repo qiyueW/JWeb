@@ -1,7 +1,6 @@
 package system.web.validate.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import system.web.JWeb;
 import system.web.WebContext;
@@ -22,9 +21,8 @@ public abstract class ValidateModel {
     public final String msg_key;
     public final String jsonModel;
     public final boolean returnJSON;
-    private boolean isJsonEngine = false;
-    private String jsonKey;
-    private Class jsonClass;
+    private int mustValidateCount = 0;
+    private ValidateJsonModel vjm = null;
 
     /**
      * 请将#代表错误信息。例如:{"code":"1","msg":#},如此，系统会自动将#替换成检验不通过的信息。
@@ -36,6 +34,10 @@ public abstract class ValidateModel {
         this.msg_key = null;
         this.jsonModel = jsonModel;
         this.returnJSON = true;
+    }
+
+    final public int getMustValidateFieldCount() {
+        return this.mustValidateCount;
     }
 
     /**
@@ -51,22 +53,12 @@ public abstract class ValidateModel {
         this.returnJSON = false;
     }
 
-    final public void openJSONEngine(Class c, final String jsonKey) {
-        isJsonEngine = true;
-        this.jsonKey = jsonKey;
-        this.jsonClass = c;
+    final public void openJSONEngine(final ValidateJsonModel vjm) {
+        this.vjm = vjm;
     }
 
-    final public boolean isJSONEngine() {
-        return this.isJsonEngine;
-    }
-
-    final public String getJSON_KEY() {
-        return this.jsonKey;
-    }
-
-    final public Class getJSON_Class() {
-        return this.jsonClass;
+    final public ValidateJsonModel getValidateJsonModel() {
+        return this.vjm;
     }
 
     final public Map<String, ValidateFieldModel> getValidateFieldModel() {
@@ -77,6 +69,9 @@ public abstract class ValidateModel {
 
     final public ValidateModel put(String name, String regex, String msg, boolean ismust) {
         map.put(name, new ValidateFieldModel(name, regex, msg, ismust));
+        if (ismust) {
+            mustValidateCount++;
+        }
         return this;
     }
 
