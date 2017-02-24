@@ -20,7 +20,7 @@ import system.web.validate.model.ValidateResultModel;
  */
 final public class ValidateEnging_JSON {
 
-    public static boolean doValidateAndResultError(JWeb jw, ValidateModel vm) throws ServletException, IOException, IllegalArgumentException, IllegalAccessException {
+    final public static boolean doValidateAndResultError(JWeb jw, ValidateModel vm) throws ServletException, IOException, IllegalArgumentException, IllegalAccessException {
         ValidateResultModel vr = new ValidateResultModel(vm.returnJSON, vm.msg_key, vm.jsonModel);
         String req_param = jw.getString(vm.getJSON_KEY());
         if (req_param.startsWith("[")) {
@@ -36,7 +36,7 @@ final public class ValidateEnging_JSON {
                     if (null == value) {
                         if (vf.isMust) {
                             vr.put(fi.fiel_name, "为必须检验的，但不存在此参数(" + fi.fiel_name + ")");
-                            continue;
+                            break;
                         }
                         continue;
                     }
@@ -47,6 +47,7 @@ final public class ValidateEnging_JSON {
                     }
                     if (!Pattern.compile(vf.regex).matcher(value).matches()) {
                         vr.put(fi.fiel_name, vf.msg);
+                        break;
                     }
                 }
             }
@@ -63,7 +64,7 @@ final public class ValidateEnging_JSON {
                 if (null == value) {
                     if (vf.isMust) {
                         vr.put(fi.fiel_name, "为必须检验的，但不存在此参数(" + fi.fiel_name + ")");
-                        continue;
+                        break;
                     }
                     continue;
                 }
@@ -74,6 +75,7 @@ final public class ValidateEnging_JSON {
                 }
                 if (!Pattern.compile(vf.regex).matcher(value).matches()) {
                     vr.put(fi.fiel_name, vf.msg);
+                    break;
                 }
             }
             jw.request.setAttribute(vm.getJSON_KEY(), obj);
