@@ -30,6 +30,8 @@ final public class DefaultValidateEngine_Json extends JsonValidateEngineModel {
         ValidateResultModel vr = new ValidateResultModel(vm.returnJSON, vm.msg_key, vm.jsonModel);
         jsondata = jsondata.trim().replaceAll("\n", "");
         int mustcount = 0;
+        int sdmustcount = vm.getMustValidateFieldCount();
+        int resultSDmustcount = 0;
         Object obj;
         String value;
         String name;
@@ -46,6 +48,7 @@ final public class DefaultValidateEngine_Json extends JsonValidateEngineModel {
                 for (String row : jsondata.split("[}]{1}[ ]{0,}[,]{1}[ ]{0,}[{]{1}")) {
                     obj = c.newInstance();
                     //单元切割（一个单元等于一个属性——在对象中）
+                    resultSDmustcount = resultSDmustcount + sdmustcount;
                     for (String cell : row.trim().split("[\"]{0,}[ ]{0,}[,]{1}[ ]{0,}[\"]{1}")) {
                         String[] nv = cell.split("\"{1}[ ]{0,}[:]{1}[ ]{0,}\"{0,}");
                         name = nv[0].startsWith("\"") ? nv[0].substring(1) : nv[0];//名
@@ -95,6 +98,7 @@ final public class DefaultValidateEngine_Json extends JsonValidateEngineModel {
                 jsondata = jsondata.substring(1).substring(0, jsondata.length() - 2).trim();
                 obj = c.newInstance();
                 //单元切割（一个单元等于一个属性——在对象中）
+                sdmustcount++;
                 for (String cell : jsondata.split("[\"]{0,}[ ]{0,}[,]{1}[ ]{0,}[\"]{1}")) {
                     String[] nv = cell.split("\"{1}[ ]{0,}[:]{1}[ ]{0,}\"{0,}");
                     name = nv[0].startsWith("\"") ? nv[0].substring(1) : nv[0];//名
@@ -134,7 +138,7 @@ final public class DefaultValidateEngine_Json extends JsonValidateEngineModel {
                 Logger.getLogger(DefaultValidateEngine_Json.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (mustcount < vm.getMustValidateFieldCount()) {
+        if (mustcount != resultSDmustcount) {
             vr.put(vm.getValidateJsonModel().getCountIsError_MessageKEY(), vm.getValidateJsonModel().getCountIsError_Message());
         }
         if (vr.isError()) {
