@@ -19,6 +19,8 @@ public class ValidateJsonModel {
     private String dateformat = WebContext.getWebContext().webConfig.DATE_FORMAT;
     private String timeformat = WebContext.getWebContext().webConfig.TIME_FORMAT;
 
+    
+    
     public String getCountIsError_Message() {
         return countIsError_Message;
     }

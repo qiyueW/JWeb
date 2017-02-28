@@ -5,6 +5,7 @@ import system.base.jclass.ClassFactory;
 import system.base.jclass.ClassInfo;
 import system.db.dao.d.DeleteByCheckDao;
 import system.db.dao.d.DeleteDao;
+import system.db.dao.vo.CID;
 import system.db.sql.SQL;
 
 /**
@@ -259,6 +260,41 @@ public class DeleteDaoImp implements DeleteDao,DeleteByCheckDao{
 
         for (Class c : check) {
             if (adus.executeQueryCount(sql.selectCountByCondition(c, idCondition)) > 0) {
+                return -1;
+            }
+        }
+        return adus.executeUpdate(sql.dellByCondition(dellc, idCondition));
+    }
+
+    @Override
+    public <T> int deleteVastByID_CheckToDeny_CID(Class<T> dellc, String ids, String denyCondition, CID... cid) {
+       ClassInfo ci = ClassFactory.get(dellc);
+        if (!ids.contains("'")) {
+            String myid = "";
+            for (String id : ids.split(",")) {
+                myid = myid + ",'" + id + "'";
+            }
+            ids = myid.substring(1);
+        }
+        String idCondition = " WHERE " + ci.fieldInfo[0].table_column_name + " IN(" + ids + ")";
+        //阻止删除的条件不为空。
+        if (!(null == denyCondition || denyCondition.isEmpty())) {
+            try {
+                //查询要删除的记录，是否符合阻止条件
+                List<T> listT = adus.executeQueryVast(dellc, sql.selectByCondition(dellc, idCondition + " AND " + denyCondition));
+                for (T obj : listT) {
+                    if (null != ci.fieldInfo[0].field.get(obj)) {
+                        //不为空，符合阻止条件。返回-1
+                        return -1;
+                    }
+                }
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                return 0;
+            }
+        }
+        
+        for (CID ciobj : cid) {
+            if (adus.executeQueryCount(sql.selectCountByCondition(ciobj.c,null==ciobj.id?idCondition:" WHERE "+ciobj.id+" IN(" + ids + ")")) > 0) {
                 return -1;
             }
         }
