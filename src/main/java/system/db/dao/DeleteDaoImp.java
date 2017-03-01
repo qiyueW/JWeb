@@ -12,15 +12,16 @@ import system.db.sql.SQL;
  *
  * @author wangchunzi
  */
-public class DeleteDaoImp implements DeleteDao,DeleteByCheckDao{
+public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao {
+
     private final SQL sql;
     private final ADUS adus;
-    
+
     public DeleteDaoImp(final ADUS adus, final SQL sql) {
-        this.sql =sql;
-        this.adus=adus;
+        this.sql = sql;
+        this.adus = adus;
     }
-    
+
     /**
      * 根据ID，删除一条记录
      *
@@ -183,21 +184,18 @@ public class DeleteDaoImp implements DeleteDao,DeleteByCheckDao{
         String idCondition = " WHERE " + ci.fieldInfo[0].table_column_name + " IN(" + ids + ")";
         //阻止删除的条件不为空。
         if (!(null == denyCondition || denyCondition.isEmpty())) {
-            try {
-                //查询要删除的记录，是否符合阻止条件
-                List<T> listT = adus.executeQueryVast(dellc, sql.selectByCondition(dellc, idCondition + " AND " + denyCondition));
-                for (T obj : listT) {
-                    if (null != ci.fieldInfo[0].field.get(obj)) {
-                        //不为空，符合阻止条件。返回-1
-                        return -1;
-                    }
+//                //查询要删除的记录，是否符合阻止条件
+//                T t = adus.executeQueryOne(dellc, sql.selectByCondition(dellc, idCondition + " AND " + denyCondition+" LIMIT 1"));
+//                if (null != ci.fieldInfo[0].field.get(t)) {
+//                    //不为空，符合阻止条件。返回-1
+//                    return -1;
+//                }
+                if (adus.executeQueryCount(sql.selectCountByCondition(dellc, idCondition + " AND " + denyCondition + " LIMIT 1")) > 0) {
+                    return -1;
                 }
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
-                return 0;
-            }
         }
         for (Class c : check) {
-            if (adus.executeQueryCount(sql.selectCountByCondition(c, idCondition)) > 0) {
+            if (adus.executeQueryCount(sql.selectCountByCondition(c, idCondition + " LIMIT 1")) > 0) {
                 return -1;
             }
         }
@@ -268,7 +266,7 @@ public class DeleteDaoImp implements DeleteDao,DeleteByCheckDao{
 
     @Override
     public <T> int deleteVastByID_CheckToDeny_CID(Class<T> dellc, String ids, String denyCondition, CID... cid) {
-       ClassInfo ci = ClassFactory.get(dellc);
+        ClassInfo ci = ClassFactory.get(dellc);
         if (!ids.contains("'")) {
             String myid = "";
             for (String id : ids.split(",")) {
@@ -292,14 +290,13 @@ public class DeleteDaoImp implements DeleteDao,DeleteByCheckDao{
                 return 0;
             }
         }
-        
+
         for (CID ciobj : cid) {
-            if (adus.executeQueryCount(sql.selectCountByCondition(ciobj.c,null==ciobj.id?idCondition:" WHERE "+ciobj.id+" IN(" + ids + ")")) > 0) {
+            if (adus.executeQueryCount(sql.selectCountByCondition(ciobj.c, null == ciobj.id ? idCondition : " WHERE " + ciobj.id + " IN(" + ids + ")")) > 0) {
                 return -1;
             }
         }
         return adus.executeUpdate(sql.dellByCondition(dellc, idCondition));
     }
 
-    
 }
