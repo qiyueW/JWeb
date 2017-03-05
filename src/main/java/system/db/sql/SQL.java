@@ -140,9 +140,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
                 sql_body.append(")");
             }
             //3. 接上2处。加入)。与1处最后的括号对应。 并返回
-            return sql_body.toString();
-        } catch (IllegalArgumentException ex) {
             return sql_head + sql_body.substring(1);
+        } catch (IllegalArgumentException ex) {
+            return null;
         }
     }
 
