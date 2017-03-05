@@ -57,7 +57,7 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
             value = ci.getFieldStringAndID(obj);
             sb.append("INSERT INTO ")
                     .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
-                    .append(value);
+                    .append(value[0]);
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return null;
         }

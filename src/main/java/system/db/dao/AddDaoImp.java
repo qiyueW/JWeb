@@ -117,8 +117,8 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
     @Override
     public <O, M> int[] add_OM(O o, List<M>... m) {
         int length = m.length + 1;
-        ClassInfo ci = ClassFactory.get(m[0].get(0).getClass());
-
+//        ClassInfo ci = ClassFactory.get(m[0].get(0).getClass());
+        ClassInfo ci = ClassFactory.get(o.getClass());
         String[] osql = sql.addAndReturnID(o);
         String[] o2sql = new String[length];
         o2sql[0] = osql[0];
