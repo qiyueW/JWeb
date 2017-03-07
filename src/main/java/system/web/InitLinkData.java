@@ -53,7 +53,7 @@ public class InitLinkData {
         for (Class c : cs) {
             try {
                 if ((HttpServlet.class.isAssignableFrom(c) && HttpServlet.class != c)
-                || (Servlet.class.isAssignableFrom(c) && Servlet.class != c)){
+                        || (Servlet.class.isAssignableFrom(c) && Servlet.class != c)) {
                     servlet.DoH(c, lf, url);
                 } else {
                     this.DoH(c, lf);
@@ -71,8 +71,6 @@ public class InitLinkData {
             filterObject.clear();
             fs = c.getMethods();
             url = ""; //存入@H+@M的完整路径 初始化
-            
-            
 
             //执行过滤器判断
             if (null != c.getAnnotation(JWFilter.class)) {
@@ -87,10 +85,9 @@ public class InitLinkData {
                 vm = null; //校验对象的数据中心 校验对象初始化
                 at_M = (M) f.getAnnotation(M.class);
                 at_Validate = (Validate) f.getAnnotation(Validate.class);
-                
-                
-                if (null != at_M && !getMValueOrURL(at_M).isEmpty()) {
 
+                if (null != at_M && !getMValueOrURL(at_M).isEmpty()) {
+                    filterObject.clearM();
                     url = requestURL(hV, getMValueOrURL(at_M), WebContext.getWebContext().webConfig.HM_SUFFIX);
 
                     //对@H@M的，执行全局检查
@@ -121,13 +118,20 @@ public class InitLinkData {
                      */
                     hp.initPutHMModel(url, new LinkHMModel(
                             filterObject.getHMFilterModel_TOP()//顶部过滤链
-                            , vm //执行校验
-                            , filterObject.getHMFilterModel_CENTER()//中部过滤链
-                            , c //执行用户请求关连的类
-                            , f //执行用户请求的关连类下的方法
-                            , this.isStaticM(f) //                            , at_M.return_way()
-                            , filterObject.getHMFilterModel_BUTTOM() //底部过滤链
-                            , filterObject.getFilterInstruction() + validate_instruction//KEY
+                            ,
+                             vm //执行校验
+                            ,
+                             filterObject.getHMFilterModel_CENTER()//中部过滤链
+                            ,
+                             c //执行用户请求关连的类
+                            ,
+                             f //执行用户请求的关连类下的方法
+                            ,
+                             this.isStaticM(f) //                            , at_M.return_way()
+                            ,
+                             filterObject.getHMFilterModel_BUTTOM() //底部过滤链
+                            ,
+                             filterObject.getFilterInstruction() + validate_instruction//KEY
                     ));
                     log.putLog(1, c.getName() + "." + f.getName() + "映射URL ： " + url + "//指令：" + (filterObject.getFilterInstruction() + validate_instruction));
 

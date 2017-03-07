@@ -53,6 +53,18 @@ public class InitJWFilterModel {
         this.buttom = 0;
     }
 
+    public void clearM() {
+//        this.headFilterClass_0.clear();
+//        this.headFilterClass_1.clear();
+//        this.headFilterClass_2.clear();
+        this.grobalFilterClass_0.clear();
+        this.grobalFilterClass_1.clear();
+        this.grobalFilterClass_2.clear();
+        this.top = 0;
+        this.center = 0;
+        this.buttom = 0;
+    }
+
     public void iniGrobalConfiguration(Set<Class> c) {
         this.findFilterModel(c, grobalFilterClass_0, grobalFilterClass_1, grobalFilterClass_2);
     }
