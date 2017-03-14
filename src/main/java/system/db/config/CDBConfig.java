@@ -52,4 +52,10 @@ public class CDBConfig {
      */
     public int connection_son_max_s=150;//MAX_CONNECTION;
     
+    public boolean openDenyCloseConnectionCheck=true;
+    /**
+     * 阻止数据库自动关闭空闲的连接 默认7小时执行一次
+     */
+    public long denyCloseConnectionCheck=7*60*60;
+    
 }

@@ -6,6 +6,6 @@ package system.base.properties;
  */
 public class PropertiesConfig {
 
-    public String filepath="jdbf.properties";
+    public String filepath="jdbc.properties";
     public Class c = system.db.config.CDBConfig.class;
 }

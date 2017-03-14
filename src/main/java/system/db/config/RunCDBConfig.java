@@ -48,6 +48,15 @@ final public class RunCDBConfig {
      */
     public final int connection_son_max_s;//MAX_CONNECTION;
 
+    
+    public final boolean openDenyCloseConnectionCheck;
+    /**
+     * 阻止数据库自动关闭空闲的连接 默认7小时执行一次
+     */
+    public final long denyCloseConnectionCheck;
+    
+    
+    
     public RunCDBConfig(CDBConfig c) {
         this.driver = c.driver;
 
@@ -94,6 +103,9 @@ final public class RunCDBConfig {
          * 一个连接最大可以产生出多少个子连接
          */
         this.connection_son_max_s = c.connection_son_max_s;//MAX_CONNECTION
+        
+        this.openDenyCloseConnectionCheck=c.openDenyCloseConnectionCheck;
+        this.denyCloseConnectionCheck=c.denyCloseConnectionCheck;
     }
 
     public Connection getConnection() {

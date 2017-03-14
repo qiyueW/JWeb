@@ -2,6 +2,7 @@ package system.db.pool;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import system.db.config.RunCDBConfig;
@@ -26,6 +27,21 @@ final public class SPool {
         SSession ic = getIC();
         return null != ic ? ic : doWait();
     }
+    
+	public void denyAutoClose() {
+		Statement statement = null;
+		for (Map.Entry<Integer, SSession> eobj : map.entrySet()) {
+				try {
+					statement = eobj.getValue().getConn().createStatement();
+					statement.executeQuery("SELECT 1");
+					System.out.println("SPool:denyAutoClose doing....");
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+	}
+    
     
     /**
      * 初始化最大连接池
