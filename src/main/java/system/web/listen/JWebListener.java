@@ -2,12 +2,16 @@ package system.web.listen;
 
 import java.util.EnumSet;
 import java.util.regex.Pattern;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
 import system.web.WebContext;
+import system.web.destroy.Destroy;
+import system.web.destroy.JWebDestroyService;
 import system.web.filter.resource.ConfigurationResource;
 import system.web.filter.resource.ResourceService;
 
@@ -18,6 +22,7 @@ import system.web.filter.resource.ResourceService;
 @WebListener
 public class JWebListener implements ServletContextListener {
 
+	private  Class<?> dc=null;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("容器初始化了！！！！！！！！love you!");
@@ -53,7 +58,10 @@ public class JWebListener implements ServletContextListener {
                     : system.web.filter.JWController.class);
             f.addMappingForUrlPatterns(dispathcherType, true, "*" + WebContext.getWebContext().webConfig.HM_SUFFIX);
         }
-
+        
+        
+        dc=new JWebDestroyService().ini(scf.getMyClass());
+        
         System.err.println(WebContext.getWebContext().webConfig.HM_SUFFIX + "你在类" + system.web.config.temp.WebConfig.class.getName() + "的实例中，配置属性webConfig.HM_SUFFIX的值通过.{1}[a-zA-Z0-9_]+的正则表达式的校验。注册框架成功");
         sce.getServletContext().setAttribute(WebContext.getWebContext().webConfig.CONTEXTPATH_KEY, WebContext.getWebContext().ContextPath);
     }
@@ -61,5 +69,19 @@ public class JWebListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         System.out.println("容器注销了！！！！！！！！wo qu!");
+        if(null!=dc){
+        	try {
+				Destroy obj=(Destroy)dc.newInstance();
+				obj.doDestroy();
+				obj=null;
+				
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+        	
+        }
     }
 }

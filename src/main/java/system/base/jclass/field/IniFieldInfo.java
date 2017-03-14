@@ -13,11 +13,12 @@ import system.base.annotation.Table;
  */
 final public class IniFieldInfo {
 
-    final private Class cc;
+    final private Class<?> cc;
 
-    public IniFieldInfo(Class cc) {
+    public IniFieldInfo(Class<?> cc) {
         this.cc = cc;
     }
+    
 
     public ClassInfo getClassInfo() {
         Table t = (Table) cc.getAnnotation(Table.class);
@@ -28,12 +29,14 @@ final public class IniFieldInfo {
     }
 
     private FieldInfo[] initField() {
+    	System.out.println(cc.getName()+"//"+cc.getDeclaredFields().length+"//////////////////////////");
         Field[] fs = cc.getDeclaredFields();
         FieldInfo[] finfo = new FieldInfo[fs.length];
         int finfo_index = 0;
         List<FieldInfo> list = new ArrayList();
         FieldInfo info;
         for (Field f : fs) {
+        	System.out.println(f.getName());
             system.base.annotation.ID id = f.getAnnotation(system.base.annotation.ID.class);
             system.base.annotation.C c = f.getAnnotation(system.base.annotation.C.class);
             system.base.annotation.Time date = f.getAnnotation(system.base.annotation.Time.class);

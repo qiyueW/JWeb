@@ -22,5 +22,10 @@ final public class DBEngine {
         this.spool = new SPool(this.rc);
         this.service = new Service(this.adupool, this.spool);
     }
+    
+    public final void closePoolConnection(){
+    	this.adupool.closeALL();
+    	this.spool.closeALL();
+    }
 
 }

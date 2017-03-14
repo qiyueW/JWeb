@@ -14,6 +14,7 @@ final public class ClassFactory {
 
     private static ClassInfo ClassInfo(Class c) {
         IniFieldInfo iniFieldInfo = new IniFieldInfo(c);
+        System.out.println("==============================="+c.getName());
         map.put(c, iniFieldInfo.getClassInfo());
         return iniFieldInfo.getClassInfo();
     }

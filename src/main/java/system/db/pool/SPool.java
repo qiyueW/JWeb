@@ -135,7 +135,7 @@ final public class SPool {
         map.replace(icon.getIndex(), icon);
         return icon;
     }
-
+ 
     /**
      * new ConnPool().closeOne(X);真正关闭一个指定X坐标的
      *
@@ -152,15 +152,21 @@ final public class SPool {
 
     public void closeALL() {
         Connection cc;
+        StringBuilder sb=new StringBuilder();
         for (Map.Entry<Integer, SSession> entry : map.entrySet()) {
             cc = entry.getValue().getConn();
             try {
                 if (null != cc && !cc.isClosed()) {
                     cc.close();
+                    sb.append("\nS:成功关闭一个连接")
+                    .append(cc)
+                    .append("//the index: ")
+                    .append(entry.getKey());
                 }
             } catch (SQLException ex) {
             }
         }
+        System.out.println(sb.toString());
     }
 
 }

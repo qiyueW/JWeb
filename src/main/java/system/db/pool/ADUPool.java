@@ -133,15 +133,24 @@ final public class ADUPool {
 
     public void closeALL() {
         Connection cc;
+        StringBuilder sb=new StringBuilder();
+        
         for (Map.Entry<Integer, ADUSession> entry : map.entrySet()) {
             cc = entry.getValue().getConn();
             try {
                 if (null != cc && !cc.isClosed()) {
                     cc.close();
+                    sb.append("\nADU:成功关闭一个连接")
+                    .append(cc)
+                    .append("//the index: ")
+                    .append(entry.getKey());
+                    
                 }
             } catch (SQLException ex) {
             }
         }
+        System.out.println(sb.toString());
+        System.gc();
     }
 
 }

@@ -101,15 +101,15 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
     }
 
     @Override
-    public <O, O2> int[] add_OO(O o, O2... o2) {
-        int length = o2.length + 1;
+    public <O, O2> int[] add_OO(O o, O2... o2s) {
+		int length = o2s.length + 1;
         ClassInfo ci = ClassFactory.get(o.getClass());
-        String[] osql = sql.addAndReturnID(o2);
+        String[] osql = sql.addAndReturnID(o);
         String[] o2sql = new String[length];
         o2sql[0] = osql[0];
-
+        
         for (int i = 1; i < length; i++) {
-            o2sql[i] = sql.addOne_replace(o2[i - 1], ci.fieldInfo[0].fiel_name, osql[1]);
+            o2sql[i] = sql.addOne_replace(o2s[i - 1], ci.fieldInfo[0].fiel_name, osql[1]);
         }
         return adus.executeBatch(o2sql);
     }
