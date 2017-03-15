@@ -14,7 +14,6 @@ public class JWebDestroyService {
                     return c;
             }
         }
-        System.gc();
         return null;
     }
 }
