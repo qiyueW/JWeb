@@ -38,7 +38,7 @@ public class NextMonth {
 	 */
 	final public LocalDate nextMonth(Date date, int nextMonthDay) {
 
-		LocalDate ld1 = DT.TO.toLocalDate(date);
+		LocalDate ld1 = DateService.TO.toLocalDate(date);
 
 		nextMonthDay = nextMonthDay < 1 ? ld1.getDayOfMonth() : nextMonthDay;
 
@@ -68,7 +68,7 @@ public class NextMonth {
 	 */
 	final public LocalDate nextMonth(Date date) {
 
-		LocalDate ld1 = DT.TO.toLocalDate(date);
+		LocalDate ld1 = DateService.TO.toLocalDate(date);
 		int nextMonth;
 		int nextyear;
 		if (ld1.getMonthValue() == 12) {
@@ -95,7 +95,7 @@ public class NextMonth {
 	 */
 	final public LocalDate nextMonth_jump(Date date,int year,int month) {
 		
-		LocalDate ld1 = DT.TO.toLocalDate(date);
+		LocalDate ld1 = DateService.TO.toLocalDate(date);
 		LocalDate now = LocalDate.of(year, month,1);
 		int  i=ld1.getDayOfMonth()>now.lengthOfMonth()
 				?now.lengthOfMonth()

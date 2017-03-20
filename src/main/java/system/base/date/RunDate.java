@@ -34,7 +34,7 @@ public class RunDate {
 	 * @return int
 	 */
 	public int minus(LocalDate d1, Date d2) {
-		return (int)(d1.getLong(ChronoField.EPOCH_DAY) - DT.TO.toLocalDate(d2).getLong(ChronoField.EPOCH_DAY) + 1);
+		return (int)(d1.getLong(ChronoField.EPOCH_DAY) - DateService.TO.toLocalDate(d2).getLong(ChronoField.EPOCH_DAY) + 1);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class RunDate {
 	 * @return int
 	 */
 	public int minus(Date d1, LocalDate d2) {
-		return (int)(DT.TO.toLocalDate(d1).getLong(ChronoField.EPOCH_DAY) - d2.getLong(ChronoField.EPOCH_DAY) + 1);
+		return (int)(DateService.TO.toLocalDate(d1).getLong(ChronoField.EPOCH_DAY) - d2.getLong(ChronoField.EPOCH_DAY) + 1);
 	}
 	
 	
@@ -54,10 +54,10 @@ public class RunDate {
 		date1 = "2016-02-09";
 		date2 = "2017-02-09";
 
-		LocalDate d1 = DT.TO.toLocalDate(date1);
-		LocalDate d2 = DT.TO.toLocalDate(date2);
-		Date dd1 = DT.TO.toDate(date1);
-		Date dd2 = DT.TO.toDate(date2);
+		LocalDate d1 = DateService.TO.toLocalDate(date1);
+		LocalDate d2 = DateService.TO.toLocalDate(date2);
+		Date dd1 = DateService.TO.toDate(date1);
+		Date dd2 = DateService.TO.toDate(date2);
 
 		System.out.println(new RunDate().minus(d2, dd1));
 	}
