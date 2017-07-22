@@ -34,7 +34,7 @@ final public class JCJSON {
         for (T obj : list) {
             sb.append(",{\"").append(ci.fieldInfo[0].fiel_name).append("\":\"").append(ci.fieldInfo[0].get(obj, "")).append("\"");
             for (int i = 1; i < ci.fieldInfo.length; i++) {
-                sb.append(",\"").append(ci.fieldInfo[i].fiel_name).append("\":\"").append(ci.fieldInfo[i].get(obj, "")).append("\"");
+                sb.append(",\"").append(ci.fieldInfo[i].fiel_name).append("\":\"").append(ci.fieldInfo[i].get(obj, "").replace("\"","\\\"")).append("\"");
             }
             sb.append("}");
         }

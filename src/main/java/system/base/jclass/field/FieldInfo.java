@@ -24,8 +24,9 @@ final public class FieldInfo {
     public final String fiel_name;
     public final String date_format;
     public final String table_column_name;
-
-    public FieldInfo( int instructions, Class fiel_type, String fiel_name, String date_format, String table_column_name, Field field) {
+    public final boolean unAuto;
+    
+    public FieldInfo( int instructions, Class fiel_type, String fiel_name, String date_format, String table_column_name, Field field,boolean aotuSQLField) {
         this.instructions = instructions;
         this.fiel_type = fiel_type;
         this.fiel_name = fiel_name;
@@ -33,6 +34,7 @@ final public class FieldInfo {
         this.date_format = date_format;
         this.field = field;
         this.field.setAccessible(true);
+        this.unAuto=aotuSQLField;
     }
 
     final public void setValueByDBResult(Object obj, java.sql.ResultSet rs) {
@@ -110,13 +112,13 @@ final public class FieldInfo {
             case SHORT:
                 return Short.valueOf(str);
             case INTEGER:
-                return Integer.valueOf(str);
+                return str.isEmpty()?0:Integer.valueOf(str);
             case LONG:
-                return Long.valueOf(str);
+                return str.isEmpty()?0:Long.valueOf(str);
             case FLOAT:
-                return Float.valueOf(str);
+                return str.isEmpty()?0:Float.valueOf(str);
             case DOUBLE:
-                return Double.valueOf(str);
+                return str.isEmpty()?0:Double.valueOf(str);
             case BOOLEAN:
                 Boolean.valueOf(str);
             case DATE:
@@ -139,15 +141,15 @@ final public class FieldInfo {
             case BYTE:
                 return Byte.valueOf(str);
             case SHORT:
-                return Short.valueOf(str);
+                return str.isEmpty()?0:Short.valueOf(str);
             case INTEGER:
-                return Integer.valueOf(str);
+                return str.isEmpty()?0:Integer.valueOf(str);
             case LONG:
-                return Long.valueOf(str);
+                return str.isEmpty()?0:Long.valueOf(str);
             case FLOAT:
-                return Float.valueOf(str);
+                return str.isEmpty()?0:Float.valueOf(str);
             case DOUBLE:
-                return Double.valueOf(str);
+                return str.isEmpty()?0:Double.valueOf(str);
             case BOOLEAN:
                 Boolean.valueOf(str);
             case DATE:

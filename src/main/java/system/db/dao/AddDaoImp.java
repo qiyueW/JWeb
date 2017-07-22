@@ -109,12 +109,12 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
         o2sql[0] = osql[0];
         
         for (int i = 1; i < length; i++) {
-            o2sql[i] = sql.addOne_replace(o2s[i - 1], ci.fieldInfo[0].fiel_name, osql[1]);
+            o2sql[i] = sql.addOne_replace(o2s[i - 1], ci.fieldInfo[0].fiel_name, "'"+osql[1]+"'");
         }
         return adus.executeBatch(o2sql);
     }
 
-    @Override
+	@Override
     public <O, M> int[] add_OM(O o, List<M>... m) {
         int length = m.length + 1;
 //        ClassInfo ci = ClassFactory.get(m[0].get(0).getClass());
@@ -123,7 +123,7 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
         String[] o2sql = new String[length];
         o2sql[0] = osql[0];
         for (int i = 1; i < length; i++) {
-            o2sql[i] = sql.addVast_replace(m[i - 1], ci.fieldInfo[0].fiel_name, osql[1]);
+            o2sql[i] = sql.addVast_replace(m[i - 1], ci.fieldInfo[0].fiel_name, "'"+osql[1]+"'");
         }
         return adus.executeBatch(o2sql);
     }

@@ -46,7 +46,7 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)) + ")"
+                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
                                 ), false)) {
                             return -1;
                         }
@@ -85,11 +85,11 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)) + ")"
+                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)+ ")") 
                                 ), false)) {
                             return -1;
                         }
-                        return adus.executeUpdate(sql.addOne(obj));
+                        return adus.executeUpdate(sql.update_all(obj));
                     }
                 }
             }
@@ -124,7 +124,7 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)) + ")"
+                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)+ ")")
                                 ), false)) {
                             return -1;
                         }
@@ -157,7 +157,7 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)) + ")"
+                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
                                 ), false)) {
                             return -1;
                         }

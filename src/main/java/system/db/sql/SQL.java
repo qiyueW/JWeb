@@ -33,9 +33,15 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
         ClassInfo ci = ClassFactory.get(obj.getClass());
         StringBuilder sb = new StringBuilder();
         try {
-            sb.append("INSERT INTO ")
-                    .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
-                    .append(ci.getFieldString(obj));
+            if (ci.unAuto) {
+                sb.append("INSERT INTO ")
+                        .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
+                        .append(ci.getFieldString(obj));
+            } else {
+                sb.append("INSERT INTO ")
+                        .append(ci.table_name).append("(").append(ci.table_column_name_add).append(") VALUES ")
+                        .append(ci.getFieldString_Auto(obj));
+            }
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return null;
         }
@@ -54,10 +60,17 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
         StringBuilder sb = new StringBuilder();
         String[] value;
         try {
-            value = ci.getFieldStringAndID(obj);
-            sb.append("INSERT INTO ")
-                    .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
-                    .append(value[0]);
+            if (ci.unAuto) {
+                value = ci.getFieldStringAndID(obj);
+                sb.append("INSERT INTO ")
+                        .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
+                        .append(value[0]);
+            } else {
+                value = ci.getFieldStringAndID_Auto(obj);
+                sb.append("INSERT INTO ")
+                        .append(ci.table_name).append("(").append(ci.table_column_name_add).append(") VALUES ")
+                        .append(value[0]);
+            }
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return null;
         }
@@ -76,14 +89,24 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     final public <T> String addVast(final List<T> objs) {
         ClassInfo ci = ClassFactory.get(objs.get(0).getClass());
         StringBuilder sb = new StringBuilder();
-        String sql = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name + ") VALUES ";
+
+        String sql;
         try {
-            for (T obj : objs) {
-                sb.append(",").append(ci.getFieldString(obj));
+            if (ci.unAuto) {
+                sql = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name + ") VALUES ";
+                for (T obj : objs) {
+                    sb.append(",").append(ci.getFieldString(obj));
+                }
+            } else {
+                sql = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name_add + ") VALUES ";
+                for (T obj : objs) {
+                    sb.append(",").append(ci.getFieldString_Auto(obj));
+                }
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return null;
         }
+
         return sql + sb.substring(1);
     }
 
@@ -99,14 +122,27 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     final public <T> String addOne_replace(final T obj, final String replaceName, final String replaceValue) {
         ClassInfo ci = ClassFactory.get(obj.getClass());
         StringBuilder sb = new StringBuilder();
-        //1. insert into table(name...) values('id 
-        sb.append("INSERT INTO ").append(ci.table_name)
-                .append("(").append(ci.table_column_name).append(") VALUES ('")
-                .append(getIID()).append("'");
-        //2. 接上1处的id后 不断加入值,'v','v2','v3'...
         try {
-            for (int i = 1; i < ci.fieldInfo.length; i++) {
-                sb.append(",").append(ci.fieldInfo[i].fiel_name.equals(replaceName) ? replaceValue : ci.fieldInfo[i].getFormatValue(obj));
+            if (ci.unAuto) {
+                //1. insert into table(name...) values('id 
+                sb.append("INSERT INTO ").append(ci.table_name)
+                        .append("(").append(ci.table_column_name).append(") VALUES ('")
+                        .append(getIID()).append("'");
+                //2. 接上1处的id后 不断加入值,'v','v2','v3'...
+                for (int i = 1; i < ci.fieldInfo.length; i++) {
+                    sb.append(",").append(ci.fieldInfo[i].fiel_name.equals(replaceName) ? replaceValue : ci.fieldInfo[i].getFormatValue(obj));
+                }
+            } else {
+                //1. insert into table(name...) values('id 
+                sb.append("INSERT INTO ").append(ci.table_name)
+                        .append("(").append(ci.table_column_name_add).append(") VALUES ('")
+                        .append(getIID()).append("'");
+                //2. 接上1处的id后 不断加入值,'v','v2','v3'...
+                for (int i = 1; i < ci.fieldInfo.length; i++) {
+                    if (ci.fieldInfo[i].unAuto) {//对非自动的，进行设置值
+                        sb.append(",").append(ci.fieldInfo[i].fiel_name.equals(replaceName) ? replaceValue : ci.fieldInfo[i].getFormatValue(obj));
+                    }
+                }
             }
             //3. 接上2处。加入)。与1处最后的括号对应。 并返回
             return sb.append(")").toString();
@@ -128,19 +164,37 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     final public <T> String addVast_replace(final List<T> objs, final String replaceName, final String replaceValue) {
         ClassInfo ci = ClassFactory.get(objs.get(0).getClass());
         StringBuilder sql_body = new StringBuilder();
-        //1. insert into table(name...) values
-        String sql_head = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name + ") VALUES ";
+
         try {
-            for (T obj : objs) {
-                //2. 接上1处的 VALUES 后 不断加入值:  ,('v','v2','v3'),('v','v2','v3'),('v','v2','v3'),('v','v2','v3')...
-                sql_body.append(",('").append(getIID()).append("'");//  idkey='idvalue'
-                for (int i = 1; i < ci.fieldInfo.length; i++) {
-                    sql_body.append(",").append(ci.fieldInfo[i].fiel_name.equals(replaceName) ? replaceValue : ci.fieldInfo[i].getFormatValue(obj));
+            if (ci.unAuto) {
+                //1. insert into table(name...) values
+                String sql_head = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name + ") VALUES ";
+                for (T obj : objs) {
+                    //2. 接上1处的 VALUES 后 不断加入值:  ,('v','v2','v3'),('v','v2','v3'),('v','v2','v3'),('v','v2','v3')...
+                    sql_body.append(",('").append(getIID()).append("'");//  idkey='idvalue'
+                    for (int i = 1; i < ci.fieldInfo.length; i++) {
+                        sql_body.append(",").append(ci.fieldInfo[i].fiel_name.equals(replaceName) ? replaceValue : ci.fieldInfo[i].getFormatValue(obj));
+                    }
+                    sql_body.append(")");
                 }
-                sql_body.append(")");
+                //3. 接上2处。加入)。与1处最后的括号对应。 并返回
+                return sql_head + sql_body.substring(1);
+            } else {
+                //1. insert into table(name...) values
+                String sql_head = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name_add + ") VALUES ";
+                for (T obj : objs) {
+                    //2. 接上1处的 VALUES 后 不断加入值:  ,('v','v2','v3'),('v','v2','v3'),('v','v2','v3'),('v','v2','v3')...
+                    sql_body.append(",('").append(getIID()).append("'");//  idkey='idvalue'
+                    for (int i = 1; i < ci.fieldInfo.length; i++) {
+                        if (ci.fieldInfo[i].unAuto) {
+                            sql_body.append(",").append(ci.fieldInfo[i].fiel_name.equals(replaceName) ? replaceValue : ci.fieldInfo[i].getFormatValue(obj));
+                        }
+                    }
+                    sql_body.append(")");
+                }
+                //3. 接上2处。加入)。与1处最后的括号对应。 并返回
+                return sql_head + sql_body.substring(1);
             }
-            //3. 接上2处。加入)。与1处最后的括号对应。 并返回
-            return sql_head + sql_body.substring(1);
         } catch (IllegalArgumentException ex) {
             return null;
         }

@@ -160,10 +160,10 @@ final public class ADUS implements ADUSDao {
             } catch (SQLException ex1) {
                 DOEFactory.getDOE().executeUpdate_rollback_error(sql);
             }
+            return -1;
         } finally {
             as.close();
         }
-        return 0;
     }
 
     @Override

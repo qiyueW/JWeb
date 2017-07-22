@@ -69,10 +69,10 @@ final public class SonIsFatherError {
 		}
 	}
 
-	private void iniIdPidDate(List<?> list, String idName, String pidName) {
+	private void iniIdPidDate(final List<?> list,final  String idName,final  String pidName) {
 		ClassInfo ci = ClassFactory.get(list.get(0).getClass());
 		for (Object obj : list) {
-			lid.add( new IdPid(ci.getFieldInfo(idName).get(obj, null),ci.getFieldInfo(idName).get(obj, null)));
+			lid.add( new IdPid(ci.getFieldInfo(idName).get(obj, null),ci.getFieldInfo(pidName).get(obj, null)));
 		}
 	}
 	

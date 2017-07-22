@@ -5,7 +5,7 @@ import java.util.List;
 import system.base.tree.vo.IdPidEnum;
 import system.base.tree.vo.SonIsFatherError;
 
-public class TreeCheck {
+final public class TreeCheck {
 
 	 /**
      * 检查pid是否可以成为mid的上级
@@ -19,7 +19,7 @@ public class TreeCheck {
      * @param pid
      * @return
      */
-    public static IdPidEnum getError_FatherIsSon(List<?> list, String idName, String pidName, String mid, String pid) {
+    public IdPidEnum getError_FatherIsSon(List<?> list, String idName, String pidName, String mid, String pid) {
         return new SonIsFatherError(list, idName, pidName).isError_SonIsFather(mid, pid);
     }
     

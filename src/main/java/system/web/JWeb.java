@@ -64,18 +64,18 @@ final public class JWeb extends VOEngine implements ReturnType {
         return endFilter;
     }
     
-    public void set(String key, Object obj) {
+    public void set(final String key,final Object obj) {
         this.request.setAttribute(key, obj);
     }
 
-    public JWeb(HttpServletRequest request, HttpServletResponse response) {
+    public JWeb(final HttpServletRequest request,final HttpServletResponse response) {
         super(request);
         this.request = request;
         this.response = response;
         this.session = this.request.getSession();
     }
 
-    public void printOne(Object obj) {
+    public void printOne(final Object obj) {
         try (PrintWriter mo = response.getWriter()) {
             mo.print(obj);
             mo.flush();
