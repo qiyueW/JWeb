@@ -37,17 +37,17 @@ final public class PowerCheckMain {
                 PCD.UPMO.dlSuccess(url, jw);
                 return SUCCESS;
             }
-            case PDK.KL_SWITCH_KEY: {//2
+            case PDK.KL_SWITCH_KEY: {//3
                 if (x[1].isEmpty()) {//如果没有指定范围
-                    return PCD.UPMO.kl_endByTrue(url, jw);
+                    return PCD.UPMO.kl_endByTrue(x[2],url, jw);
                 }
                 //如果指定范围，首先检查是否在范围内
                 if (null == jw.session.getAttribute(x[1])) {
-                    PCD.UPMO.klError(url, jw);
+                    PCD.UPMO.klError(x[2],url, jw);
                     return ERROR;
                 }
                 //如果符合指定范围。执行口令方法
-                return PCD.UPMO.kl_endByTrue(url, jw);
+                return PCD.UPMO.kl_endByTrue(x[2],url, jw);
             }
             case PDK.SQ_SWITCH_KEY: {//3
                 //必须是指定范围，首先检查是否在范围内

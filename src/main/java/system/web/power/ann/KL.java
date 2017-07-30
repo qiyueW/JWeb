@@ -11,6 +11,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE,ElementType.METHOD})
 public @interface KL {
-    public String value() default "";
-    public String scope()default "";
+    public String value() default "";//口令分类、等级 等等，主要作用于需要区分的场境
+    public String scope()default ""; //是否需要登陆
 }

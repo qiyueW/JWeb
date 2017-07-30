@@ -19,12 +19,13 @@ public interface UPM {
     
     /**
      * 口令处理。(    如果想不通过，return true)
+     * @param kl
      * @param url
      * @param jw
      * @return 
      */
-    public boolean kl_endByTrue(final String url,final system.web.JWeb jw);
-    public void klError(final String url,final system.web.JWeb jw);
+    public boolean kl_endByTrue(final String kl,final String url,final system.web.JWeb jw);
+    public void klError(final String kl,final String url,final system.web.JWeb jw);
     
     public boolean start_endByTrue(final String url,final system.web.JWeb jw);
     public void end(final String url,final system.web.JWeb jw);

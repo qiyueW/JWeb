@@ -33,12 +33,12 @@ public class UPMDefault implements UPM {
     }
 
     @Override
-    public boolean kl_endByTrue(String url, JWeb jw) {
+    public boolean kl_endByTrue(String kl,String url, JWeb jw) {
         return true;
     }
 
     @Override
-    public void klError(String url, JWeb jw) {
+    public void klError(String kl,String url, JWeb jw) {
     }
 
     @Override
