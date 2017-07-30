@@ -3,6 +3,8 @@ package system.web;
 import system.base.Sc.ScF;
 import system.base.timework.TimeWorkInitService;
 import system.web.init.JWebInitService;
+import system.web.power.InitPowerCode;
+import system.web.power.InitUPM;
 
 /**
  *
@@ -26,6 +28,11 @@ public class IniTempMain {
         
         //执行时间任务查找
         new TimeWorkInitService().ini(scf.getMyClass());
+        
+        //初始化用户权限过滤处理
+        new InitUPM(scf.getMyClass());
+        
+        new InitPowerCode().initPowerCode(scf.getMyClass());
     }
 
 }

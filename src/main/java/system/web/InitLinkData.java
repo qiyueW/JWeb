@@ -15,13 +15,14 @@ import system.web.hm.model.LinkHMModel;
 import system.web.servlet.Servlet;
 import system.web.validate.model.InitValidateModel;
 import system.base.annotation.Validate;
+import system.web.hm.HMTool;
 import system.web.validate.model.ValidateModel;
 
 /**
  *
  * @author ik
  */
-public class InitLinkData {
+public class InitLinkData extends HMTool{
 
     private final system.web.hm.model.LinkHMData hp = new system.web.hm.model.LinkHMData();
     private final system.web.servlet.LinkServletData servlet = new system.web.servlet.LinkServletData();
@@ -29,7 +30,6 @@ public class InitLinkData {
     private final InitValidateModel validate = new InitValidateModel();
     system.base.log.SysLog log = new system.base.log.SysLog();
     private final system.web.filter.chain.InitJWFilterModel filterObject = new system.web.filter.chain.InitJWFilterModel();
-
     Method[] fs;
     String url = ""; //存入@H+@M的完整路径
     M at_M;//@M的数据
@@ -140,25 +140,7 @@ public class InitLinkData {
         }
     }
 
-    private String getMValueOrURL(M m) {
-        return m.url().isEmpty() ? m.value() : m.url();
-    }
-
-    /**
-     * 请求的后续。如果没有，则不设。如果有
-     *
-     * @param hz
-     * @return
-     */
-    private String requestURL(String hurl, String murl, String hz) {
-        if (!hurl.isEmpty()) {
-            hurl = hurl.startsWith("/") ? hurl : "/" + hurl;
-            hurl = hurl.endsWith("/") ? hurl.substring(0, hurl.length() - 1) : hurl;
-        }
-        murl = murl.startsWith("/") ? murl : "/" + murl;
-        murl = murl.endsWith("/") ? murl.substring(0, murl.length() - 1) : murl;
-        return hurl + murl + (null == hz ? "" : hz);
-    }
+    
 
     private boolean isStaticM(Method m) {
         return m.getParameterCount() == 1 && m.getParameterTypes()[0].equals(JWeb.class);

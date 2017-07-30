@@ -41,6 +41,9 @@ public class JWControllerAll implements Filter {
         }
 
         JWeb jw = new JWeb(req, resp);
+        if (system.web.power.PowerCheckMain.checkPowerIsError(jw, x)) {
+            return;
+        }
         try {
             HMModelEngine.doLinkEngine(x, jw);
         } catch (ServletException | IOException ex) {
@@ -58,7 +61,7 @@ public class JWControllerAll implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        System.out.println(this.getClass().getName()+"注册成功！");
+        System.out.println(this.getClass().getName() + "注册成功！");
         this.filterConfig = filterConfig;
         if (WebContext.getWebContext().webConfig.RESOURCE_MANAGER_OPEN) {
             cr = (ConfigurationResource) filterConfig.getServletContext().getAttribute(ConfigurationResource.class.getName());

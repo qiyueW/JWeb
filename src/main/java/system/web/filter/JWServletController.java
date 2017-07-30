@@ -37,6 +37,9 @@ public class JWServletController implements Filter {
         resp.setCharacterEncoding(WebContext.getWebContext().webConfig.ENCODE);
         JWeb jw = new JWeb(req, resp);
         String x = req.getServletPath();
+        if (system.web.power.PowerCheckMain.checkPowerIsError(jw, x)) {
+            return;
+        }
         ServletModel linkModel = LinkServletData.getLinkModel(x);
 
         if (null == linkModel) {
@@ -47,7 +50,7 @@ public class JWServletController implements Filter {
             }
             return;
         }
-        
+
         ServletModelEngine.doLinkEngine(linkModel, jw, chain);
     }
 
@@ -61,7 +64,7 @@ public class JWServletController implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        System.out.println(this.getClass().getName()+"注册成功！");
+        System.out.println(this.getClass().getName() + "注册成功！");
         this.filterConfig = filterConfig;
     }
 

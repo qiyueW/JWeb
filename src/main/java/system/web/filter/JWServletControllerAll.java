@@ -37,13 +37,16 @@ public class JWServletControllerAll implements Filter {
         req.setCharacterEncoding(WebContext.getWebContext().webConfig.ENCODE);
         resp.setCharacterEncoding(WebContext.getWebContext().webConfig.ENCODE);
         String x = req.getServletPath();
-        
+
         if (WebContext.getWebContext().webConfig.RESOURCE_MANAGER_OPEN && cr.isStaticResource(x, req, resp)) {
             chain.doFilter(request, response);
             return;
         }
 
         JWeb jw = new JWeb(req, resp);
+        if (system.web.power.PowerCheckMain.checkPowerIsError(jw, x)) {
+            return;
+        }
         ServletModel linkModel = LinkServletData.getLinkModel(x);
 
         if (null == linkModel) {

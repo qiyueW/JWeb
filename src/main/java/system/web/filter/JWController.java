@@ -34,6 +34,11 @@ public class JWController implements Filter {
         resp.setCharacterEncoding(WebContext.getWebContext().webConfig.ENCODE);
         JWeb jw = new JWeb(req, resp);
         String x = req.getServletPath();
+        
+        if(system.web.power.PowerCheckMain.checkPowerIsError(jw, x)){
+            return;
+        }
+        
         try {
             HMModelEngine.doLinkEngine(x, jw);
         } catch (ServletException | IOException ex) {
