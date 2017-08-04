@@ -15,6 +15,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileCleaningTracker;
+import system.web.WebContext;
 
 /**
  *
@@ -100,8 +101,8 @@ final public class FileUp {
     }
 
     private static void doUpOne(FileItem item, FileModel fm, FI fi) {
-        fi.fileName = item.getFieldName();//item.getName();
-        System.out.println("============================"+item.getFieldName()+"//"+item.getName()+"//"+item.getString());
+        int filenamelen=item.getName().lastIndexOf(WebContext.getWebContext().islinux?"/":"\\");
+        fi.fileName = filenamelen==-1?item.getName():item.getName().substring(filenamelen+1);
         if (fm.isError_toCheckType(item.getContentType())) {
             fi.message = fm.getFileConfig().message_error_fileType;
             return;
