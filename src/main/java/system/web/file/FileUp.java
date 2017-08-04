@@ -108,7 +108,7 @@ final public class FileUp {
             return;
         }
         if (fm.isError_toCheckSuffix(fi.fileName.substring(fi.fileName.lastIndexOf(".") + 1))) {
-            System.out.println(fi.fileName.lastIndexOf("."));
+//            System.out.println(fi.fileName.lastIndexOf("."));
             fi.message = fm.getFileConfig().message_error_fileNameSuffix;
             return;
         }
@@ -127,11 +127,11 @@ final public class FileUp {
         }
         fi.message = fm.getFileConfig().message_error_upload;
     }
-    private static final Map<String, DiskFileItemFactory> map = new HashMap();
+    private static final Map<String, DiskFileItemFactory> STATIC_PATH_MAP_OBJECT = new HashMap();
 
     private static List<FileItem> getFileItems(HttpServletRequest req, FileModel fm) {
         try {
-            DiskFileItemFactory factory = map.get(fm.getFileConfig().path_temp_real);
+            DiskFileItemFactory factory = STATIC_PATH_MAP_OBJECT.get(fm.getFileConfig().path_temp_real);
 //            org.apache.commons.fileupload.servlet.FileCleanerCleanup
             if (null == factory) {
                 FileCleaningTracker fileCleaningTracker
@@ -142,7 +142,7 @@ final public class FileUp {
                         : new File(fm.getFileConfig().path_temp_real)
                 );
                 factory.setFileCleaningTracker(fileCleaningTracker);
-                map.put(fm.getFileConfig().path_temp_real, factory);
+                STATIC_PATH_MAP_OBJECT.put(fm.getFileConfig().path_temp_real, factory);
             }
             ServletFileUpload upload = new ServletFileUpload(factory);
             upload.setHeaderEncoding("utf-8");
