@@ -100,7 +100,8 @@ final public class FileUp {
     }
 
     private static void doUpOne(FileItem item, FileModel fm, FI fi) {
-        fi.fileName = item.getName();
+        fi.fileName = item.getFieldName();//item.getName();
+        System.out.println("============================"+item.getFieldName()+"//"+item.getName()+"//"+item.getString());
         if (fm.isError_toCheckType(item.getContentType())) {
             fi.message = fm.getFileConfig().message_error_fileType;
             return;
