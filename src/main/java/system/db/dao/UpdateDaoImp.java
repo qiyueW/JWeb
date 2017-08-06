@@ -46,7 +46,7 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
+                                        obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
                                 ), false)) {
                             return -1;
                         }
@@ -85,7 +85,7 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)+ ")") 
+                                        obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
                                 ), false)) {
                             return -1;
                         }
@@ -96,6 +96,7 @@ public class UpdateDaoImp implements UpdateDao {
         }
         return 0;
     }
+
     /**
      * 根据ID更新（除开指定字段的值）。不管值是否为null
      *
@@ -106,12 +107,11 @@ public class UpdateDaoImp implements UpdateDao {
     @Override
     public int updateSome_reject(Object obj, String rejectField, String... unique) {
         if (unique.length == 0) {
-            return adus.executeUpdate(sql.updateSome_reject(obj,rejectField));
+            return adus.executeUpdate(sql.updateSome_reject(obj, rejectField));
         }
         ClassInfo ci = ClassFactory.get(obj.getClass());
         StringBuilder sb = new StringBuilder();
         int j = 0;
-
         for (int i = 1; i < ci.fieldInfo.length; i++) {
             for (String u : unique) {
                 if (ci.fieldInfo[i].fiel_name.equals(u)) {//检查是否我们要找到字段
@@ -124,11 +124,11 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4)+ ")")
+                                        obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
                                 ), false)) {
                             return -1;
                         }
-                         return adus.executeUpdate(sql.updateSome_reject(obj,rejectField));
+                        return adus.executeUpdate(sql.updateSome_reject(obj, rejectField));
                     }
                 }
             }
@@ -139,7 +139,7 @@ public class UpdateDaoImp implements UpdateDao {
     @Override
     public int updateSome_alloy(Object obj, String alloyField, String... unique) {
         if (unique.length == 0) {
-            return adus.executeUpdate(sql.updateSome_alloy(obj,alloyField));
+            return adus.executeUpdate(sql.updateSome_alloy(obj, alloyField));
         }
         ClassInfo ci = ClassFactory.get(obj.getClass());
         StringBuilder sb = new StringBuilder();
@@ -157,11 +157,11 @@ public class UpdateDaoImp implements UpdateDao {
                         if (!ci.fieldInfo[0].isNullField(
                                 adus.executeQueryOne(
                                         obj.getClass(), sql.selectOneByCondition(
-                                                obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
+                                        obj.getClass(), "WHERE " + ci.fieldInfo[0].table_column_name + "<>" + ci.fieldInfo[0].getFormatValue(obj) + " AND (" + sb.substring(4) + ")")
                                 ), false)) {
                             return -1;
                         }
-                         return adus.executeUpdate(sql.updateSome_reject(obj,alloyField));
+                        return adus.executeUpdate(sql.updateSome_reject(obj, alloyField));
                     }
                 }
             }
