@@ -20,7 +20,7 @@ import system.web.power.ann.SQ;
  */
 public class InitPowerCode extends HMTool {
 
-    private final Map<String, String[]> urlAndPowerData = new HashMap();
+    private final Map<String, String[]> urlMapPowerSortAndPowerValue = new HashMap();
     private final system.base.log.SysLog log = new system.base.log.SysLog();
 
     public void initPowerCode(List<Class> cs) {
@@ -37,12 +37,12 @@ public class InitPowerCode extends HMTool {
                 for (Method f : c.getMethods()) {
                     at_M = f.getAnnotation(M.class);
                     if (null != at_M && !getMValueOrURL(at_M).isEmpty()) {
-                        urlAndPowerData.put(requestURL(h_url, getMValueOrURL(at_M), WebContext.getWebContext().webConfig.HM_SUFFIX), getMethodSort(f, h_uapd));
+                        urlMapPowerSortAndPowerValue.put(requestURL(h_url, getMValueOrURL(at_M), WebContext.getWebContext().webConfig.HM_SUFFIX), getMethodSort(f, h_uapd));
                     }
                 }
             }
         }
-        new PCD().setUrlAndPowerData(urlAndPowerData);
+        new PCD().setUrlAndPowerData(urlMapPowerSortAndPowerValue);
     }
 
     private String[] getHeadSort(Class c) {
@@ -80,7 +80,7 @@ public class InitPowerCode extends HMTool {
         }
         KL kl = m.getAnnotation(KL.class);
         if (null != kl) {
-            return new String[]{PDK.KL_SWITCH_KEY, kl.value()};
+            return new String[]{PDK.KL_SWITCH_KEY,kl.scope(), kl.value()};
         }
         //没有标注时，跟头走
         return defaultkey;

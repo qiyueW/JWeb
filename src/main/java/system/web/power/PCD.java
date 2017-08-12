@@ -8,22 +8,20 @@ import system.web.power.interfaces.UPM;
  *
  * @author wangchunzi
  */
-@system.web.power.ann.SQ(value = "sasd", scope = PDK.SESSION_DEFAULT_KEY)
+@system.web.power.ann.SQ("sasd")
 public class PCD {
 
-    private final static Map<String, String[]> UrlAndPowerData= new HashMap();;
+    private final static Map<String, String[]> urlMapPowerSortAndPowerValue= new HashMap();;
     public final static UPM UPMO;
     private static boolean hasDoOne = false;
 
     final public static String[] getPowerData(String url) {
-        return UrlAndPowerData.get(url);
+        return urlMapPowerSortAndPowerValue.get(url);
     }
-
-    
     
     public void setUrlAndPowerData(Map<String, String[]> m) {
         if (!hasDoOne) {
-            UrlAndPowerData.putAll(m);
+            urlMapPowerSortAndPowerValue.putAll(m);
             hasDoOne=true;
         }
     }

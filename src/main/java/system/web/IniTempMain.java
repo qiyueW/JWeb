@@ -3,6 +3,7 @@ package system.web;
 import system.base.Sc.ScF;
 import system.base.timework.TimeWorkInitService;
 import system.web.init.JWebInitService;
+import system.web.power.InitIPD;
 import system.web.power.InitPowerCode;
 import system.web.power.InitUPM;
 
@@ -31,8 +32,10 @@ public class IniTempMain {
         
         //初始化用户权限过滤处理
         new InitUPM(scf.getMyClass());
-        
+        //执行url与权限类型相关信息关联起
         new InitPowerCode().initPowerCode(scf.getMyClass());
+        
+        new InitIPD(scf.getMyClass());
     }
 
 }

@@ -15,4 +15,9 @@ public class PISD<T> {
         this.obj = obj;
         this.power = power;
     }
+
+    public PISD(T obj, String powers) {
+        this.obj = obj;
+        this.power = powers == null || powers.isEmpty() ? new String[]{} : powers.split(",");
+    }
 }

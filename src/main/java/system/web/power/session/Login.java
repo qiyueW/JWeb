@@ -20,7 +20,6 @@ final public class Login {
     }
     /**
      * 登陆(session会话key采用默认的 PDK.SESSION_DEFAULT_KEY)
-     * @param <T>
      * @param jw jweb对象
      * @param obj 用户对话
      * @param power 用户权限——字符串1维数组(String[])
