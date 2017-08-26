@@ -16,7 +16,7 @@ public interface AddDao {
      * @return boolean
      */
     public int addOne(Object obj, String... unique);
-
+    public int addOneByMyID(Object obj, String... unique);
     /**
      * 添加语句。
      *

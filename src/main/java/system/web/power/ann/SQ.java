@@ -14,5 +14,5 @@ import system.web.power.PDK;
 @Target({ElementType.TYPE,ElementType.METHOD})
 public @interface SQ {
     public String value() ;//授权码
-    public String scope()default PDK.SESSION_DEFAULT_KEY;
+    public String scope()default PDK.SESSION_DEFAULT_USER_KEY;
 }

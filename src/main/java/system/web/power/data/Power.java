@@ -12,25 +12,17 @@ public class Power {
 
     //indexdata2.push({ id: '2.1', pid: '2', text: 'ERP工单分类管理' ,isexpand: false});
     public String getViewMenuJSON() {
-        return "{ \"id\":\"" + this.power_id
-                + "\", \"pid\":\"" + this.power_pid
-                + "\", \"text\":\"" + this.power_name
-                + "\", \"url\":\"" + this.view_url
-                + "\", \"isexpand\":\"" + this.isexpand + "\"}";
-    }
-
-    public String getViewMenuJSONByChoose() {
-        return "{ \"id\":\"" + this.power_id
-                + "\", \"pid\":\"" + this.power_pid
-                + "\", \"text\":\"" + this.power_name
-                + "\", \"url\":\"" + this.view_url
+        return "{ \"power_id\":\"" + this.power_id
+                + "\", \"power_pid\":\"" + this.power_pid
+                + "\", \"power_name\":\"" + this.power_name
+                + (null != this.view_url && this.view_url.length() > 0 ? "\", \"view_url\":\"" + this.view_url : "")
                 + "\", \"isexpand\":\"" + this.isexpand + "\"}";
     }
 
     public String getShowPVMenuJSON() {
-        return "{ \"id\":\"" + this.power_id
-                + "\", \"pid\":\"" + this.power_pid
-                + "\", \"text\":\"" + this.power_name
+        return "{ \"power_id\":\"" + this.power_id
+                + "\", \"power_pid\":\"" + this.power_pid
+                + "\", \"power_name\":\"" + this.power_name
                 + "\", \"isexpand\":\"" + this.isexpand + "\"}";
     }
 

@@ -13,6 +13,7 @@ import system.web.power.ann.DL;
 import system.web.power.ann.GG;
 import system.web.power.ann.KL;
 import system.web.power.ann.SQ;
+import system.web.power.ann.ZDY;
 
 /**
  *
@@ -22,6 +23,7 @@ public class InitPowerCode extends HMTool {
 
     private final Map<String, String[]> urlMapPowerSortAndPowerValue = new HashMap();
     private final system.base.log.SysLog log = new system.base.log.SysLog();
+    private PCD pcd = new PCD();
 
     public void initPowerCode(List<Class> cs) {
         Annotation ann;
@@ -42,7 +44,7 @@ public class InitPowerCode extends HMTool {
                 }
             }
         }
-        new PCD().setUrlAndPowerData(urlMapPowerSortAndPowerValue);
+        pcd.setUrlAndPowerData(urlMapPowerSortAndPowerValue);
     }
 
     private String[] getHeadSort(Class c) {
@@ -61,6 +63,12 @@ public class InitPowerCode extends HMTool {
             return new String[]{PDK.KL_SWITCH_KEY, kl.value()};
         }
 
+        ZDY zdy = (ZDY) c.getAnnotation(ZDY.class);
+        if (null != zdy) {
+            pcd.setZDYData(zdy.zdy().getName(), zdy.zdy());//类名作为 实例key
+            return new String[]{PDK.ZDY_SWITCH_KEY, zdy.zdy().getName(), zdy.value()};
+        }
+
         return new String[]{PDK.GG_SWITCH_KEY};
     }
 
@@ -69,7 +77,7 @@ public class InitPowerCode extends HMTool {
         if (null != gg) {
             return new String[]{PDK.GG_SWITCH_KEY};
         }
-        
+
         DL dl = m.getAnnotation(DL.class);
         if (null != dl) {
             return new String[]{PDK.DL_SWITCH_KEY, dl.value()};
@@ -80,8 +88,15 @@ public class InitPowerCode extends HMTool {
         }
         KL kl = m.getAnnotation(KL.class);
         if (null != kl) {
-            return new String[]{PDK.KL_SWITCH_KEY,kl.scope(), kl.value()};
+            return new String[]{PDK.KL_SWITCH_KEY, kl.scope(), kl.value()};
         }
+
+        ZDY zdy = m.getAnnotation(ZDY.class);
+        if (null != zdy) {
+            pcd.setZDYData(zdy.zdy().getName(), zdy.zdy());//类名作为 实例key
+            return new String[]{PDK.ZDY_SWITCH_KEY, zdy.zdy().getName(), zdy.value()};
+        }
+
         //没有标注时，跟头走
         return defaultkey;
     }

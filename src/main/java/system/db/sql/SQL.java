@@ -36,11 +36,30 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
             if (ci.unAuto) {
                 sb.append("INSERT INTO ")
                         .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
-                        .append(ci.getFieldString(obj));
+                        .append(ci.getFieldString(obj,true));
             } else {
                 sb.append("INSERT INTO ")
                         .append(ci.table_name).append("(").append(ci.table_column_name_add).append(") VALUES ")
-                        .append(ci.getFieldString_Auto(obj));
+                        .append(ci.getFieldString_Auto(obj,true));
+            }
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            return null;
+        }
+        return sb.toString();
+    }
+     @Override
+    final public String addOneByMyID(final Object obj) {
+        ClassInfo ci = ClassFactory.get(obj.getClass());
+        StringBuilder sb = new StringBuilder();
+        try {
+            if (ci.unAuto) {
+                sb.append("INSERT INTO ")
+                        .append(ci.table_name).append("(").append(ci.table_column_name).append(") VALUES ")
+                        .append(ci.getFieldString(obj,false));
+            } else {
+                sb.append("INSERT INTO ")
+                        .append(ci.table_name).append("(").append(ci.table_column_name_add).append(") VALUES ")
+                        .append(ci.getFieldString_Auto(obj,false));
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             return null;
@@ -95,12 +114,12 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
             if (ci.unAuto) {
                 sql = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name + ") VALUES ";
                 for (T obj : objs) {
-                    sb.append(",").append(ci.getFieldString(obj));
+                    sb.append(",").append(ci.getFieldString(obj,true));
                 }
             } else {
                 sql = "INSERT INTO " + ci.table_name + "(" + ci.table_column_name_add + ") VALUES ";
                 for (T obj : objs) {
-                    sb.append(",").append(ci.getFieldString_Auto(obj));
+                    sb.append(",").append(ci.getFieldString_Auto(obj,true));
                 }
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {

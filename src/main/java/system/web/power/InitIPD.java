@@ -26,7 +26,6 @@ public class InitIPD {
             if (IPowerData.class.isAssignableFrom(c) && !c.equals(IPowerData.class)) {
                 try {
                     obj = (IPowerData) c.newInstance();
-                    
                     list.add(obj);
                 } catch (InstantiationException | IllegalAccessException ex) {
                     System.err.println("实例权限类数据类时，发生错误，权限管理中止！！");
@@ -37,10 +36,12 @@ public class InitIPD {
         if(list.isEmpty())return;
         
         log.setLogTitle("【用户权限数据设定]】开始......");
-        PD pdt=new PD();
+        PD pdt;
         Collections.sort(list, new PowerComparator());
         for(IPowerData pd:list){
+            pdt=new PD();
             pd.doPowerData(pdt);
+            pdt.initEndModelDo_setKeyMapModule(pd.key());
             log.putLog(1, "执行"+pd.getClass().getName());
         }
         log.setLogTitle("【用户权限数据设定】结束.....");

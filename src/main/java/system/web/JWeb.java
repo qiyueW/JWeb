@@ -45,7 +45,7 @@ final public class JWeb extends VOEngine implements ReturnType {
 
     public void sendRedirect(final String url) {
         try {
-            this.response.sendRedirect(url);
+            this.response.sendRedirect(WebContext.getWebContext().ContextPath+url);
         } catch (IOException ex) {
             Logger.getLogger(JWeb.class.getName()).log(Level.SEVERE, null, ex);
         }

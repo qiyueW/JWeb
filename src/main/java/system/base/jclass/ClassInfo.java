@@ -49,20 +49,22 @@ final public class ClassInfo {
      * 将对象实例的fieldInfo属性值，转成"'v','v2','v3'....'vn'"这样的字符串，值的顺序与本实例的属性table_column_name的字段名一致
      *
      * @param obj
+     * @param autoID
      * @return
      * @throws IllegalArgumentException
      * @throws IllegalAccessException
      */
-    final public String getFieldString(final Object obj) throws IllegalArgumentException, IllegalAccessException {
-        String value = "'" + getIID() + "'";
+    final public String getFieldString(final Object obj, final boolean autoID) throws IllegalArgumentException, IllegalAccessException {
+        String value = autoID ? "'" + getIID() + "'" : fieldInfo[0].getFormatValue(obj);
         for (int i = 1; i < fieldInfo.length; i++) {
             value = value + "," + fieldInfo[i].getFormatValue(obj);
         }
         return "(" + value + ")";
+
     }
 
-    final public String getFieldString_Auto(final Object obj) throws IllegalArgumentException, IllegalAccessException {
-        String value = "'" + getIID() + "'";
+    final public String getFieldString_Auto(final Object obj, final boolean autoID) throws IllegalArgumentException, IllegalAccessException {
+        String value = autoID ? "'" + getIID() + "'" : fieldInfo[0].getFormatValue(obj);
         for (int i = 1; i < fieldInfo.length; i++) {
             if (fieldInfo[i].unAuto) {
                 value = value + "," + fieldInfo[i].getFormatValue(obj);

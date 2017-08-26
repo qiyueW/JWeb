@@ -4,14 +4,15 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import system.web.power.PDK;
+import system.web.power.interfaces.IZDY;
 
 /**
- * 登陆类管理
+ * 授权类管理
  * @author wangchunzi
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE,ElementType.METHOD})
-public @interface DL {
-    public String value() default PDK.SESSION_DEFAULT_USER_KEY;
+public @interface ZDY {
+    public Class<?extends IZDY> zdy() ;//授权码
+    public String value();
 }
