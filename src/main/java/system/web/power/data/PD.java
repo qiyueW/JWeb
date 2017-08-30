@@ -77,7 +77,7 @@ public class PD {
     }
 
     public static String getViewMenueByJson(final String[] ids, int... key) {
-        
+
         if (null == ids || ids.length == 0) {
             return "[{}]";
         }
@@ -144,15 +144,34 @@ public class PD {
      * @return
      */
     public PD setHMNode(String power_pid, String power_id, String power_name) {
+        if(this.isError(power_id)){
+            System.err.print("权限标识重复! id:"+power_id+",name:"+power_name);
+            System.exit(0);
+        }
         Power obj = new Power();
         obj.setPower_pid(power_pid);
-        obj.setPower_id(power_id);
+        obj.setPower_id(power_id.trim());
         obj.setPower_name(power_name);
         obj.setIsexpand(false);
         obj.setPv_sort(PowerSort.hm.key);
         PLIST.add(obj);
         this.plist.add(obj);
         return this;
+    }
+
+    private boolean isError(String id) {
+        id = id.trim();
+        for (Power obj : PLIST) {
+            if (obj.getPower_id().equals(id)) {
+                return true;
+            }
+        }
+        for (Power obj : VLIST) {
+            if (obj.getPower_id().equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -166,6 +185,10 @@ public class PD {
      * @return
      */
     public PD setViewNode(String power_pid, String power_id, String power_name, String view_url, boolean isExpand) {
+        if(this.isError(power_id)){
+            System.err.print("权限标识重复! id:"+power_id+",name:"+power_name);
+            System.exit(0);
+        }
         Power obj = new Power();
         obj.setPower_pid(power_pid);
         obj.setPower_id(power_id);
@@ -192,6 +215,10 @@ public class PD {
      * @return
      */
     public PD setHMAndViewNode(String power_pid, String power_id, String power_name, String view_url, boolean isExpand) {
+        if(this.isError(power_id)){
+            System.err.print("权限标识重复! id:"+power_id+",name:"+power_name);
+            System.exit(0);
+        }
         Power obj = new Power();
         obj.setPower_pid(power_pid);
         obj.setPower_id(power_id);
@@ -217,6 +244,10 @@ public class PD {
      * @return
      */
     public PD setEmptyNode(String power_pid, String power_id, String power_name, boolean isExpand) {
+        if(this.isError(power_id)){
+            System.err.print("权限标识重复! id:"+power_id+",name:"+power_name);
+            System.exit(0);
+        }
         Power obj = new Power();
         obj.setPower_pid(power_pid);
         obj.setPower_id(power_id);
