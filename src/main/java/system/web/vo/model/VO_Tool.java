@@ -1,4 +1,4 @@
-package system.web.param.model;
+package system.web.vo.model;
 
 import system.web.JWeb;
 
