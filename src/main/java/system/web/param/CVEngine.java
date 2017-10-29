@@ -7,16 +7,18 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import system.base.date.DateService;
 import system.web.JWeb;
 import system.web.param.model.VO_BeanModel;
 import system.web.param.model.VO_Father;
 import system.web.param.model.VO_OneModel;
+import system.web.param.model.VO_Tool;
 
 /**
  *
  * @author wangchunzi
  */
-public class CVEngine extends VO_Father implements VO_OneModel, VO_BeanModel {
+public class CVEngine extends VO_Father implements VO_OneModel, VO_BeanModel, VO_Tool {
 
     private static final CVEngine jweb_cv = new CVEngine();
 
@@ -282,4 +284,61 @@ public class CVEngine extends VO_Father implements VO_OneModel, VO_BeanModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 默认取 reqParam1参与reqParam2参 的值。然后组成时间范围的sql条件语句。
+     * @param jw JWeb对象
+     * @param qz 在返回字符串前 添加的字符串
+     * @param sqlField 数据库表中某一字段。
+     * @param defaultValue 默认返回，当取不到用户的日期传参时。
+     * @param reqParam1
+     * @param reqParam2
+     * @return 
+     */
+    @Override
+    public String getDate(JWeb jw, String qz, String sqlField, String defaultValue, String reqParam1, String reqParam2) {
+        String d1 = jw.getString(reqParam1);
+        String d2 = jw.getString(reqParam2);
+        return tDateToSQL(jw,qz,sqlField,defaultValue,d1,d2);
+    }
+
+    /**
+     * 默认取 paramkeyDate1参与paramkeyDate2参 的值。然后组成时间范围的sql条件语句。
+     * @param jw JWeb对象
+     * @param qz 在返回字符串前 添加的字符串
+     * @param sqlField 数据库表中某一字段。
+     * @return 
+     */
+    @Override
+    public String getDate(JWeb jw, String qz, String sqlField) {
+        String d1 = jw.getString("paramkeyDate1");
+        String d2 = jw.getString("paramkeyDate2");
+        return tDateToSQL(jw,qz,sqlField,null,d1,d2);
+    }
+ 
+    private static String tDateToSQL(JWeb jw, String qz, String sqlField, String defaultValue, String d1, String d2) {
+        Date date1 = null, date2 = null;
+        boolean b1 = false, b2 = false;
+        if (!(null == d1 || d1.isEmpty())) {
+            date1 = DateService.TO.toDate(d1);
+            b1 = true;
+        }
+
+        if (!(null == d2 || d2.isEmpty())) {
+            date2 = DateService.TO.toDate(d2);
+            b2 = true;
+        }
+
+        if (null == date1 && null == date2) {
+            return null == defaultValue ? "" : " "+qz+" "+defaultValue;
+        }
+        if (b1 && b2) {
+            return date1.getTime()<date2.getTime()?
+                    " "+qz+" "+sqlField + " BETWEEN '" + d1 + "' AND '" + d2+"'"
+                    :" "+qz+" "+sqlField + " BETWEEN '" + d2 + "' AND '" + d1+"'";
+        }
+        if(b1){
+            return " "+qz+" "+sqlField +">='"+b1+"'";
+        }
+        return " "+qz+" "+sqlField +"<='"+b2+"'";
+    }
 }
