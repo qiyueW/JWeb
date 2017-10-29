@@ -230,9 +230,9 @@ public class VOEngine extends VO_Father implements VO_OneModel, VO_BeanModel,VO_
                     : " " + qz + " " + sqlField + " BETWEEN '" + d2 + "' AND '" + d1 + "'";
         }
         if (b1) {
-            return " " + qz + " " + sqlField + ">='" + b1 + "'";
+            return " " + qz + " " + sqlField + ">='" + d1 + "'";
         }
-        return " " + qz + " " + sqlField + "<='" + b2 + "'";
+        return " " + qz + " " + sqlField + "<='" + d2 + "'";
     }
 
 }
