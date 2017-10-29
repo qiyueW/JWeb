@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class ToXDate {
 	private String dateFormat = system.web.WebContext.getWebContext().webConfig.DATE_FORMAT;
-	private String timeFormat = system.web.WebContext.getWebContext().webConfig.DATE_FORMAT;
+	private String timeFormat = system.web.WebContext.getWebContext().webConfig.TIME_FORMAT;
 
 	//
 	// private String dateFormat="yyyy-MM-dd";
