@@ -21,6 +21,10 @@ public class WhereStr {
         return sb.toString();
     }
 
+    public String geteWhereSQL() {
+        return sb.length() > 0 ? "WHERE " + sb.toString() : "";
+    }
+
     public WhereStr putAND(String tj) {
         if (null == tj || tj.isEmpty()) {
             return this;
@@ -36,7 +40,7 @@ public class WhereStr {
         sb.append(sb.length() == 0 ? tj : " OR " + tj);
         return this;
     }
-    
+
     private static boolean valueIsError(ValueDo dov, String v) {
         switch (dov.key) {
             case 0: {  //notNull(0) 非null
@@ -64,7 +68,9 @@ public class WhereStr {
 
     /**
      * 放入名与值的关系
-     *<p>值默认用''包着 在非null情况下
+     * <p>
+     * 值默认用''包着 在非null情况下
+     *
      * @param dov 值允许的类型
      * @param ljf 连接前面的符号
      * @param n 名
@@ -86,9 +92,10 @@ public class WhereStr {
         sb.append(" ").append(ljf).append(" ").append(n).append(bjf).append(v);
         return this;
     }
+
     /**
      * 放入名与值的关系 IN逻辑关系
-     * 
+     *
      * @param dov 值允许的类型
      * @param ljf 连接前面的符号
      * @param n 名
@@ -106,9 +113,12 @@ public class WhereStr {
         sb.append(" ").append(ljf).append(" ").append(n).append(" IN(").append(v).append(")");
         return this;
     }
-      /**
+
+    /**
      * 放入名与值的关系 LIKE逻辑关系
-     *<p>值默认用''包着
+     * <p>
+     * 值默认用''包着
+     *
      * @param dov 值允许的类型
      * @param ljf 连接前面的符号
      * @param n 名
@@ -126,8 +136,7 @@ public class WhereStr {
         sb.append(" ").append(ljf).append(" ").append(n).append(" LIKE '").append(v).append("'");
         return this;
     }
-    
-    
+
     public void resetObject() {
         sb.setLength(0);
     }
