@@ -6,12 +6,12 @@ package system.base.str;
  */
 public class WhereStr {
 
-    public enum ValueDo {
+    public enum valueX {
         notNull(0), notEmpty(1), notNullAndNotEmpty(2),
         alloyNull(10), alloyEmpty(11), alloyNullAndEmpty(12);
         public final int key;
 
-        private ValueDo(int i) {
+        private valueX(int i) {
             key = i;
         }
     }
@@ -41,7 +41,7 @@ public class WhereStr {
         return this;
     }
 
-    private static boolean valueIsError(ValueDo dov, String v) {
+    private static boolean valueIsError(valueX dov, String v) {
         switch (dov.key) {
             case 0: {  //notNull(0) 非null
                 return null == v;//null成立，返回true
@@ -78,7 +78,7 @@ public class WhereStr {
      * @param v 值
      * @return
      */
-    public WhereStr putBjf(ValueDo dov, String ljf, String n, String bjf, String v) {
+    public WhereStr putBjf(valueX dov, String ljf, String n, String bjf, String v) {
         if (valueIsError(dov, v)) {
             return this;
         }
@@ -102,7 +102,7 @@ public class WhereStr {
      * @param v 值
      * @return
      */
-    public WhereStr putLjf_IN(ValueDo dov, String ljf, String n, String v) {
+    public WhereStr putLjf_IN(valueX dov, String ljf, String n, String v) {
         if (valueIsError(dov, v)) {
             return this;
         }
@@ -125,7 +125,7 @@ public class WhereStr {
      * @param v 值
      * @return
      */
-    public WhereStr putLjf_LIKE(ValueDo dov, String ljf, String n, String v) {
+    public WhereStr putLjf_LIKE(valueX dov, String ljf, String n, String v) {
         if (valueIsError(dov, v)) {
             return this;
         }
