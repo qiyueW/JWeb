@@ -63,12 +63,12 @@ final public class Login {
         return ((PISD)obj).power;
     }
     
-    final static public <T>T getUserInfo(T t,final JWeb jw,final String sessionKey){
+    final static public <T>T getUserInfo(Class<T> t,final JWeb jw,final String sessionKey){
         Object obj= jw.session.getAttribute(sessionKey);
         if(null==obj)return null;
         return (T)((PISD)obj).obj;
     }
-    final static public <T>T getUserInfo(T t,final JWeb jw){
+    final static public <T>T getUserInfo(Class<T> t,final JWeb jw){
         Object obj= jw.session.getAttribute(PDK.SESSION_DEFAULT_USER_KEY);
         if(null==obj)return null;
         return (T)((PISD)obj).obj;
