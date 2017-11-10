@@ -193,7 +193,20 @@ public class VOEngine extends VO_Father implements VO_OneModel, VO_BeanModel,VO_
         String d2 =  request.getParameter(reqParam2);
         return tDateToSQL(qz, sqlField, defaultValue, d1, d2);
     }
-
+    /**
+     * 默认取 reqParam1参与reqParam2参 的值。然后组成时间范围的sql条件语句。
+     *
+     * @param qz 在返回字符串前 添加的字符串
+     * @param sqlField 数据库表中某一字段。
+     * @param defaultValue 默认返回，当取不到用户的日期传参时。
+     * @param d1 起始日期
+     * @param d2 结束日期
+     * @return
+     */
+    @Override
+    public String getDateScope2(String qz, String sqlField, String defaultValue, String d1, String d2) {
+        return tDateToSQL(qz, sqlField, defaultValue, d1, d2);
+    }
     /**
      * 默认取 paramkeyDate1参与paramkeyDate2参 的值。然后组成时间范围的sql条件语句。
      *
