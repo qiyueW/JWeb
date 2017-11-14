@@ -122,6 +122,9 @@ final public class FieldInfo {
             case BOOLEAN:
                 Boolean.valueOf(str);
             case DATE:
+                if(str.isEmpty()){
+                    return null;
+                }
                 try {
                     return new java.text.SimpleDateFormat(this.date_format).parse(str);
                 } catch (java.text.ParseException ex) {
@@ -153,6 +156,9 @@ final public class FieldInfo {
             case BOOLEAN:
                 Boolean.valueOf(str);
             case DATE:
+                if(str.isEmpty()){
+                    return null;
+                }
                 try {
                     return new java.text.SimpleDateFormat(
                             str.length() < timeFormat.length() ? dateFormat : timeFormat
