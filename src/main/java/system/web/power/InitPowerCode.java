@@ -72,14 +72,21 @@ public class InitPowerCode extends HMTool {
         return new String[]{PDK.GG_SWITCH_KEY};
     }
 
+    /**
+     * 识别方法标注的 权限符
+     *
+     * @param m
+     * @param defaultkey 没有适合时，返回用户默认
+     * @return
+     */
     private String[] getMethodSort(Method m, String[] defaultkey) {
         GG gg = m.getAnnotation(GG.class);
-        if (null != gg) {
+        if (null != gg) {//公共权限，仅装入区别值返回
             return new String[]{PDK.GG_SWITCH_KEY};
         }
 
         DL dl = m.getAnnotation(DL.class);
-        if (null != dl) {
+        if (null != dl) {//登录权限，装入区别值，登陆的 session key
             return new String[]{PDK.DL_SWITCH_KEY, dl.value()};
         }
         SQ sq = m.getAnnotation(SQ.class);
