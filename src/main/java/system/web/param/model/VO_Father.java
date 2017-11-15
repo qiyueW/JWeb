@@ -7,7 +7,7 @@
 ///**
 // *
 // * @author wangchunzi
-// */
+// */ 
 //public abstract class VO_Father {
 //
 //    private static final Map<Class, Field[]> map = new HashMap();
