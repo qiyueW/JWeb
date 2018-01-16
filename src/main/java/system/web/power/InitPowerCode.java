@@ -103,7 +103,6 @@ public class InitPowerCode extends HMTool {
             pcd.setZDYData(zdy.zdy().getName(), zdy.zdy());//类名作为 实例key
             return new String[]{PDK.ZDY_SWITCH_KEY, zdy.zdy().getName(), zdy.value()};
         }
-
         //没有标注时，跟头走
         return defaultkey;
     }
