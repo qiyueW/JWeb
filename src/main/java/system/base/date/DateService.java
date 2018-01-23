@@ -26,12 +26,15 @@ final public class DateService {
     }
 
     /**
-     *  
+     *
      * @param date
-     * @param format 例 yyyy-MM-dd HH:mm:ss 
-     * @return 
+     * @param format 例 yyyy-MM-dd HH:mm:ss
+     * @return
      */
     final public static String getDate(Date date, String format) {
+        if (null == date) {
+            return "";
+        }
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(date);
     }
