@@ -27,18 +27,16 @@ public class StringTool {
         return null == s || s.isEmpty() ? "''" : "'" + s.replace(",", "','") + "'";
     }
 
-    public static final String downloadFileName_zhcnCode(HttpServletRequest request, String filename) {
+    public static final String downloadFileName_zhcnCode(HttpServletRequest req, String downloadFilename) {
         try {
-            if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
-
-                filename = URLEncoder.encode(filename, "UTF-8");
-
+            if (req.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
+                downloadFilename = URLEncoder.encode(downloadFilename, "UTF-8");
             } else {
-                filename = new String(filename.getBytes("UTF-8"), "ISO8859-1");
+                downloadFilename = new String(downloadFilename.getBytes("UTF-8"), "ISO8859-1");
             }
         } catch (UnsupportedEncodingException ex) {
             return "filename";
         }
-        return filename;
+        return downloadFilename;
     }
 }
