@@ -5,6 +5,7 @@ import system.base.jclass.ClassFactory;
 import system.base.jclass.ClassInfo;
 import system.db.dao.d.DeleteByCheckDao;
 import system.db.dao.d.DeleteDao;
+import system.db.dao.d.OODelete;
 import system.db.dao.vo.CID;
 import system.db.sql.SQL;
 
@@ -12,7 +13,7 @@ import system.db.sql.SQL;
  *
  * @author wangchunzi
  */
-public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao {
+public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao, OODelete {
 
     private final SQL sql;
     private final ADUS adus;
@@ -190,9 +191,9 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao {
 //                    //不为空，符合阻止条件。返回-1
 //                    return -1;
 //                }
-                if (adus.executeQueryCount(sql.selectCountByCondition(dellc, idCondition + " AND " + denyCondition + " LIMIT 1")) > 0) {
-                    return -1;
-                }
+            if (adus.executeQueryCount(sql.selectCountByCondition(dellc, idCondition + " AND " + denyCondition + " LIMIT 1")) > 0) {
+                return -1;
+            }
         }
         for (Class c : check) {
             if (adus.executeQueryCount(sql.selectCountByCondition(c, idCondition + " LIMIT 1")) > 0) {
@@ -297,6 +298,27 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao {
             }
         }
         return adus.executeUpdate(sql.dellByCondition(dellc, idCondition));
+    }
+
+    @Override
+    public int ooDelete(String ids, Class... needDelete) {
+        ClassInfo ci = ClassFactory.get(needDelete[0]);//主表
+        if (!ids.contains("'")) {
+            String myid = "";
+            for (String id : ids.split(",")) {
+                myid = myid + ",'" + id + "'";
+            }
+            ids = myid.substring(1);
+        }
+        String[] msql = new String[needDelete.length];
+        msql[0] = sql.dellVast2(needDelete[0], ids);//主的
+        String idCondition = " WHERE " + ci.fieldInfo[0].table_column_name + " IN(" + ids + ")";
+
+        for (int i = 1; i < needDelete.length; i++) {
+            msql[i] = sql.dellByCondition(needDelete[i], idCondition);
+        }
+        int[] irs = adus.executeBatch(msql);
+        return null == irs ? -1 : irs[0];
     }
 
 }

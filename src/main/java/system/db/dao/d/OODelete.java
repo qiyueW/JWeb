@@ -11,13 +11,6 @@ public interface OODelete {
      * @param needDelete
      * @return 
      */
-    public int delete(String id, Class... needDelete);
-    /**
-     * 第一个参数是主键集合，第二个一定是主表的关联对象，之后的是副表中的相关记录。一并删除。
-     * @param ids
-     * @param needDelete
-     * @return 
-     */
-    public int deleteVast(String ids, Class... needDelete);
+    public int ooDelete(String id, Class... needDelete);
     
 }
