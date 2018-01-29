@@ -108,7 +108,6 @@ final public class FileUp {
             return;
         }
         if (fm.isError_toCheckSuffix(fi.fileName.substring(fi.fileName.lastIndexOf(".") + 1))) {
-//            System.out.println(fi.fileName.lastIndexOf("."));
             fi.message = fm.getFileConfig().message_error_fileNameSuffix;
             return;
         }

@@ -57,10 +57,4 @@ public class InitContainer {
             islinux = false;
         }
     }
-
-    public static void main(String args[]) {
-        String p = "/sdf/sdf/sdf/sdf/\\";
-        System.out.println(p.endsWith("\\"));
-    }
-
 }

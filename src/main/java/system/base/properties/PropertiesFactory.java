@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import system.base.jclass.ClassTypeCode;
 import static system.base.jclass.ClassTypeCode.BOOLEAN;
-import static system.base.jclass.ClassTypeCode.BYTE;
-import static system.base.jclass.ClassTypeCode.DATE;
 import static system.base.jclass.ClassTypeCode.DOUBLE;
 import static system.base.jclass.ClassTypeCode.FLOAT;
 import static system.base.jclass.ClassTypeCode.INTEGER;
@@ -41,7 +39,6 @@ final public class PropertiesFactory {
             myobj = pc.c.newInstance();
             Object value;
             Properties rb = new Properties();
-            System.out.println(PropertiesFactory.class.getClassLoader().getResource("").toString());
             InputStream is = PropertiesFactory.class.getClassLoader().getResourceAsStream(pc.filepath);
 
             if (null == is) {

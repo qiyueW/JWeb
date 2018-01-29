@@ -104,13 +104,13 @@ final public class PartUp {
             return;
         }
         if (fm.isError_toCheckSuffix(fi.fileName.substring(fi.fileName.lastIndexOf(".") + 1))) {
-            System.out.println(fi.fileName.lastIndexOf("."));
+//            System.out.println(fi.fileName.lastIndexOf("."));
             fi.message = fm.getFileConfig().message_error_fileNameSuffix;
             return;
         }
         if (fm.isError_toSize(item.getSize())) {
             fi.message = fm.getFileConfig().message_error_fileSize_max;
-            System.out.println(item.getSize()+"//"+fm.getFileConfig().fileSize_max);
+//            System.out.println(item.getSize()+"//"+fm.getFileConfig().fileSize_max);
             return;
         }
         fm.startFI(fi);

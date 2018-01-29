@@ -133,9 +133,9 @@ public class ToXDate {
 		return Date.from(ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 	}
 
-	public static void main(String args[]) {
-		ToXDate to = new ToXDate();
-		Date date = to.toDate(LocalDate.now());
-		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
-	}
+//	public static void main(String args[]) {
+//		ToXDate to = new ToXDate();
+//		Date date = to.toDate(LocalDate.now());
+//		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
+//	}
 }

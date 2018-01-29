@@ -37,7 +37,7 @@ final public class IniFieldInfo {
         FieldInfo info;
         boolean isUnauto;
         for (Field f : fs) {
-            System.out.println(f.getName());
+//            System.out.println(f.getName());
             system.base.annotation.ID id = f.getAnnotation(system.base.annotation.ID.class);
             system.base.annotation.C c = f.getAnnotation(system.base.annotation.C.class);
             system.base.annotation.Time date = f.getAnnotation(system.base.annotation.Time.class);

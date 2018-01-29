@@ -39,8 +39,4 @@ public class ExecutorPool {
 
 	}
 
-	public static void main(String args[]) {
-		// ExecutorPool.timeDo(Test.class);
-		// System.out.println(ExecutorPool.timeStop(Test.class));
-	}
 }

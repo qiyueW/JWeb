@@ -80,7 +80,7 @@ final public class MathTool {
         double i = 3.5;
         double i2 = 10;
         BigDecimal.valueOf(i2 / 10).setScale(2, BigDecimal.ROUND_HALF_UP);
-        System.out.println(BigDecimal.valueOf(i2 / i).setScale(6, BigDecimal.ROUND_HALF_UP));
+//        System.out.println(BigDecimal.valueOf(i2 / i).setScale(6, BigDecimal.ROUND_HALF_UP));
 //        MathTool.divide(i2, i, 6)
     }
 }

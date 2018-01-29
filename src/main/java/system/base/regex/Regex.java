@@ -1,7 +1,5 @@
 package system.base.regex;
 
-import java.util.regex.Pattern;
-
 /**
  *
  * @author wangchunzi
@@ -20,8 +18,8 @@ public class Regex {
     
     public static final String DATE = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     
-    public static void main(String args[]) {
-        String i = "9.999999";
-        System.out.println(Pattern.compile(NUMBER).matcher(i).matches());
-    }
+//    public static void main(String args[]) {
+//        String i = "9.999999";
+//        System.out.println(Pattern.compile(NUMBER).matcher(i).matches());
+//    }
 }

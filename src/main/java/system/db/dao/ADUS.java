@@ -39,7 +39,7 @@ final public class ADUS implements ADUSDao {
      */
     @Override
     final public <T> T executeQueryOne(Class<T> c, final String sql) {
-        System.out.println("In the queryOne:" + sql);
+//        System.out.println("In the queryOne:" + sql);
         ClassInfo ci = ClassFactory.get(c);
         T obj;
         try {
@@ -81,7 +81,7 @@ final public class ADUS implements ADUSDao {
      */
     @Override
     final public <T> List<T> executeQueryVast(Class<T> c, final String sql) {
-        System.out.println(sql);
+//        System.out.println(sql);
         ClassInfo ci = ClassFactory.get(c);
         T obj;
         List<T> list = new ArrayList<>();
@@ -121,7 +121,7 @@ final public class ADUS implements ADUSDao {
      */
     @Override
     final public int executeQueryCount(final String sql) {
-        System.out.println(sql);
+//        System.out.println(sql);
         Statement statement = null;
         ResultSet select;
         SSession session = spool.getSSession();
@@ -144,7 +144,7 @@ final public class ADUS implements ADUSDao {
 
     @Override
     final public int executeUpdate(String sql) {
-        System.out.println(sql);
+//        System.out.println(sql);
         ADUSession as = this.adupool.getIndexConnection();
         try {
             Statement cs = as.getConn().createStatement();
@@ -168,11 +168,11 @@ final public class ADUS implements ADUSDao {
 
     @Override
     final public int[] executeBatch(String... SQL) {
-        System.out.println("=========事务管理-展示SQL 上==========\n");
-        for (String temp : SQL) {
-            System.out.println(temp + "\n");
-        }
-        System.out.println("=========事务管理-展示SQL 下==========\n");
+//        System.out.println("=========事务管理-展示SQL 上==========\n");
+//        for (String temp : SQL) {
+//            System.out.println(temp + "\n");
+//        }
+//        System.out.println("=========事务管理-展示SQL 下==========\n");
 
         ADUSession as = this.adupool.getIndexConnection();
         try {

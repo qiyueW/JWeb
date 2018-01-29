@@ -39,8 +39,8 @@ final public class DateService {
         return sdf.format(date);
     }
 
-    public static void main(String args[]) {
-
-        System.out.println(DateService.NT.nextMonth(DateService.TO.toDate("2017-3-31")).toString());
-    }
+//    public static void main(String args[]) {
+//
+//        System.out.println(DateService.NT.nextMonth(DateService.TO.toDate("2017-3-31")).toString());
+//    }
 }

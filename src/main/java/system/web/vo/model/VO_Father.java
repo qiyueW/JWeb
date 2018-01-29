@@ -58,11 +58,11 @@ public abstract class VO_Father {
     protected static final <T> T getObject(HttpServletRequest request, Class<T> x, final String dateformat, final String timeformat) {
         T obj;
         ClassInfo ci = ClassFactory.get(x);
-        System.out.println(x.getName()+"//"+ci.table_name);
+//        System.out.println(x.getName()+"//"+ci.table_name);
         try {
             obj = x.newInstance();
             for (FieldInfo fi : ci.fieldInfo) {
-            	System.out.println(fi.fiel_name+"//"+dateformat+"//"+timeformat);
+//            	System.out.println(fi.fiel_name+"//"+dateformat+"//"+timeformat);
                 fi.setValue(obj, fi.get(request.getParameter(fi.fiel_name), dateformat, timeformat));
             }
             return obj;

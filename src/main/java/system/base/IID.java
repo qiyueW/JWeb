@@ -16,8 +16,6 @@ public class IID {
     private static int i = 0;
 
     public static String getIID() {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH0mmss0SSS");
-//        DecimalFormat df = new DecimalFormat("0000000");
         return new SimpleDateFormat("yyyyMMdd_HHmmss_SSS").format(new Date())
                 + new DecimalFormat("0000000").format(getI());
     }
@@ -25,17 +23,5 @@ public class IID {
     synchronized private static int getI() {
         i = i >= 9999999 ? 1 : ++i;
         return i;
-    }
-
-    public static void main(String args[]) {
-
-        for (int x = 1; x < 5000; x++) {
-            System.out.println(
-                    IID.getIID()
-            );
-        }
-        System.out.println(
-                IID.getIID()
-        );
     }
 }

@@ -164,7 +164,7 @@ final public class FieldInfo {
                             str.length() < timeFormat.length() ? dateFormat : timeFormat
                     ).parse(str);
                 } catch (java.text.ParseException ex) {
-                    System.out.println("时间转换出错:" + str + " 要求的格式:" + (str.length() < timeFormat.length() ? dateFormat : timeFormat));
+                    System.err.println("时间转换出错:" + str + " 要求的格式:" + (str.length() < timeFormat.length() ? dateFormat : timeFormat));
                 }
                 return null;
             default:
