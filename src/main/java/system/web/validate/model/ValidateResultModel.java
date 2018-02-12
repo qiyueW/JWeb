@@ -33,7 +33,7 @@ public class ValidateResultModel {
     }
 
     /**
-     * 当t为String类时，返回json数据。为Map<String,String>时，返回Map数据
+     * 当t为String类时，返回json数据。为Map时，返回Map数据
      *
      * @param <T>
      * @param t
