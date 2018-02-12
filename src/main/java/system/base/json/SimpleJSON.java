@@ -59,10 +59,10 @@ public class SimpleJSON {
     
     /**
      * 将json数据转成某对象集合(假如碰上时间，采用c类的属性上的 标注@Time中的值)
-     * @param <T>
-     * @param c
-     * @param jsondata
-     * @return 
+     * @param <T> 用户指定对象类别
+     * @param c  java类
+     * @param jsondata json格式的字符
+     * @return 返回集合
      */
     final public static <T> List<T> getListBySimpleJsonData_CI_TIME(Class<T> c, String jsondata) {
         jsondata = jsondata.trim().replaceAll("\n", "");
@@ -103,7 +103,7 @@ public class SimpleJSON {
     /**
      * 将json数据转成一个对象(假如碰上时间，采用c类的属性上的 标注@Time中的值)
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param c         数据对象
      * @param jsondata  json数据
      * @return T
@@ -142,8 +142,8 @@ public class SimpleJSON {
     /**
      * 将json数据转成一个对象(假如碰上时间，采用传参的时间格式 dateformat 或 timeformat)
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c java类
      * @param jsondata      JSON数据
      * @param dateformat    日期格式
      * @param timeformat    时间格式
