@@ -157,11 +157,11 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao, OODelete {
 
     /**
      * 删除一条记录,删除前:
-     * <p/>
+     * 
      * 1.先检查主表的阻止删除条件查询结束是否有值。如果有值，直接返回-1
-     * <p/>
+     * 
      * 2.先查check[]中所有的表是否有值根据id，有值则不执行删除，并返回-1;
-     * <p/>
+     * 
      *
      * @param <T>
      * @param dellc 表关联的对象类(删除对象)
