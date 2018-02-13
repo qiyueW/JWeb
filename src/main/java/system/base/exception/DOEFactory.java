@@ -14,7 +14,7 @@ final public class DOEFactory {
     /**
      * 取得默认处理实例
      *
-     * @return
+     * @return DOEConfiguration
      */
     final static public DOEConfiguration getDOE() {
         return doeObj;
@@ -23,7 +23,7 @@ final public class DOEFactory {
     /**
      * 检出用户自定义处理jdbc操作异常的相关类，并实例它
      *
-     * @param doe
+     * @param doe  extends DOEConfiguration 的类型
      */
     public static void set(Class<? extends DOEConfiguration> doe) {
         try {
