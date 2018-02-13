@@ -9,8 +9,18 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface M {
 
+    /**
+     * 默认空“”
+     *
+     * @return 字符串
+     */
     public String value() default "";//路径
 
+    /**
+     * 默认空“”
+     *
+     * @return 字符串
+     */
     public String url() default "";//路径
 
 }

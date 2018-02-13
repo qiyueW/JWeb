@@ -11,6 +11,12 @@ import system.db.config.CDBConfig;
  */
 public class DBEngineFactory {
 
+    /**
+     * 取得操作数据库的实例
+     *
+     * @param model PropertiesModel
+     * @return DBEngine
+     */
     public static DBEngine getDBEngine(PropertiesModel model) {
         PropertiesConfig pc = new PropertiesConfig();
         model.configuration(pc);
@@ -18,6 +24,10 @@ public class DBEngineFactory {
         return new DBEngine((CDBConfig) pf.get());
     }
 
+    /**
+     *  取得操作数据库的实例
+     * @return  DBEngine
+     */
     public static DBEngine getDBEngine() {
         PropertiesConfig pc = new PropertiesConfig();
         PropertiesFactory pf = new PropertiesFactory(pc);

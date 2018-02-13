@@ -6,6 +6,9 @@ package system.base.str;
  */
 public class WhereStr {
 
+    /**
+     * 代表数据
+     */
     public enum valueX {
         notNull(0), notEmpty(1), notNullAndNotEmpty(2),
         alloyNull(10), alloyEmpty(11), alloyNullAndEmpty(12);
@@ -15,16 +18,35 @@ public class WhereStr {
             key = i;
         }
     }
+    /**
+     * 字符容器
+     */
     final private StringBuilder sb = new StringBuilder();
 
+    /**
+     * 取出拼成的sql语句
+     *
+     * @return String
+     */
     public String getSQL() {
         return sb.toString();
     }
 
+    /**
+     * 取出拼成的sql语句 （非空情况下，会带有WHERE前缀）
+     *
+     * @return String
+     */
     public String geteWhereSQL() {
         return sb.length() > 0 ? "WHERE " + sb.toString() : "";
     }
 
+    /**
+     * 加入自定义条件 。
+     *
+     * @param tj 条件
+     * @return WhereStr
+     */
     public WhereStr putAND(String tj) {
         if (null == tj || tj.isEmpty()) {
             return this;
@@ -33,6 +55,12 @@ public class WhereStr {
         return this;
     }
 
+    /**
+     * 加入或条件
+     *
+     * @param tj 条件
+     * @return WhereStr
+     */
     public WhereStr putOR(String tj) {
         if (null == tj || tj.isEmpty()) {
             return this;
@@ -41,6 +69,13 @@ public class WhereStr {
         return this;
     }
 
+    /**
+     * 检查值是否合法
+     *
+     * @param dov 检查方案
+     * @param v 值
+     * @return boolean结果
+     */
     private static boolean valueIsError(valueX dov, String v) {
         switch (dov.key) {
             case 0: {  //notNull(0) 非null
@@ -76,7 +111,7 @@ public class WhereStr {
      * @param n 名
      * @param bjf 比较符（等于，大于，小于，不等于）
      * @param v 值
-     * @return
+     * @return WhereStr
      */
     public WhereStr putBjf(valueX dov, String ljf, String n, String bjf, String v) {
         if (valueIsError(dov, v)) {
@@ -100,7 +135,7 @@ public class WhereStr {
      * @param ljf 连接前面的符号
      * @param n 名
      * @param v 值
-     * @return
+     * @return WhereStr
      */
     public WhereStr putLjf_IN(valueX dov, String ljf, String n, String v) {
         if (valueIsError(dov, v)) {
@@ -123,7 +158,7 @@ public class WhereStr {
      * @param ljf 连接前面的符号
      * @param n 名
      * @param v 值
-     * @return
+     * @return WhereStr
      */
     public WhereStr putLjf_LIKE(valueX dov, String ljf, String n, String v) {
         if (valueIsError(dov, v)) {
@@ -137,6 +172,9 @@ public class WhereStr {
         return this;
     }
 
+    /**
+     * 清空数据
+     */
     public void resetObject() {
         sb.setLength(0);
     }

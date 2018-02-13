@@ -14,12 +14,12 @@ public class SimpleJSON {
 
     /**
      * 将json数据转成某对象集合(假如碰上时间，采用传参的时间格式 dateformat 或 timeformat)
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类
      * @param jsondata      JSON数据
      * @param dateformat    日期格式
      * @param timeformat    时间格式
-     * @return 
+     * @return List 集合
      */
     final public static <T> List<T> getListBySimpleJsonData(Class<T> c, String jsondata, final String dateformat, final String timeformat) {
         jsondata = jsondata.trim().replaceAll("\n", "");

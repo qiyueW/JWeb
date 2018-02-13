@@ -96,7 +96,7 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
     /**
      * 批量操作语句
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param list
      * @return int
      */

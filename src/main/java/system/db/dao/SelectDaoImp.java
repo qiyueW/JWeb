@@ -22,8 +22,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询一条记录，根据ID
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param id
      * @return T
      */
@@ -35,8 +35,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询一条记录。根据条件
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param condition
      * @return T
      */
@@ -48,7 +48,7 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询表的总记录数
      *
-     * @param c
+     * @param c 类型
      * @return int
      */
     @Override
@@ -59,7 +59,7 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询表的记录数 根据条件
      *
-     * @param c
+     * @param c 类型
      * @param condition
      * @return int
      */
@@ -71,8 +71,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询所有
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @return List
      */
     @Override
@@ -83,8 +83,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询所有，并进行自定义排序
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param orderby 对于数据库字段前缀：无！
      * @return List
      */
@@ -96,8 +96,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询所有 根据条件
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param condition
      * @return List
      */
@@ -109,8 +109,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 查询所有，根据条件，并进行自定义排序
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param condition 条件
      * @param orderby 对于数据库字段前缀：无！
      * @return List
@@ -123,8 +123,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 分页查询
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param page
      * @param pageCount
      * @return List
@@ -137,8 +137,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 分页查询 并进行排序
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param page
      * @param pageCount
      * @param orderby
@@ -152,9 +152,9 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 分页查询 根据条件
      *
-     * @param <T>
-     * @param c
-     * @param page
+     * @param <T> 泛型
+     * @param c 类型
+     * @param page 
      * @param pageCount
      * @param condition
      * @return List
@@ -167,8 +167,8 @@ final public class SelectDaoImp implements SelectDao {
     /**
      * 分页查询 根据条件 并进行排序
      *
-     * @param <T>
-     * @param c
+     * @param <T> 泛型
+     * @param c 类型
      * @param page
      * @param pageCount
      * @param condition

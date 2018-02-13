@@ -13,5 +13,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 public @interface Validate {
 
+    /**
+     * 指定校验火龙
+     *
+     * @return 类
+     */
     public Class value();
 }

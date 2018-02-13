@@ -6,5 +6,10 @@ package system.base.properties;
  */
 public abstract class PropertiesModel {
 
+    /**
+     * 接口
+     *
+     * @param pc
+     */
     abstract public void configuration(PropertiesConfig pc);
 }

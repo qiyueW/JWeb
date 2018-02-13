@@ -13,5 +13,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface JWFilter {
 
+    /**
+     * 指定过滤类的集合
+     * @return 类的数组
+     */
     public Class[] value();
 }

@@ -32,7 +32,7 @@ final public class ADUS implements ADUSDao {
     /**
      * 执行查询 一条记录
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param c
      * @param sql
      * @return T
@@ -74,7 +74,7 @@ final public class ADUS implements ADUSDao {
     /**
      * 执行查询 多条记录
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param c
      * @param sql
      * @return List

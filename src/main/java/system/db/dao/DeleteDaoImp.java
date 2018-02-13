@@ -78,7 +78,7 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao, OODelete {
     /**
      * 删除一条记录,删除前，先查check[]中所有的表是否有值根据id，有值则不执行删除，并返回-1;
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param dellc 表关联的对象类(删除对象)
      * @param id 表记录的主键
      * @param denyCondition 本对象关联数据表的 阻止删除的条件(不要加入where!) 即会跟id 组装成 where
@@ -113,7 +113,7 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao, OODelete {
     /**
      * 删除一条记录,删除前，先查check[]中所有的表是否有值根据id，有值则不执行删除，并返回-1;
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param dellc 表关联的对象类(删除对象)
      * @param dellCondition 表记录的主键
      * @param denyCondition 本对象关联数据表的 阻止删除的条件(不要加入where!) 即会跟id 组装成 where
@@ -163,7 +163,7 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao, OODelete {
      * 2.先查check[]中所有的表是否有值根据id，有值则不执行删除，并返回-1;
      * 
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param dellc 表关联的对象类(删除对象)
      * @param ids 表记录的主键集合 "id1,id2,id3,id4,i5...idN" 或为 (不要加入where!)
      * "'id1','id2','id3','id4'.....'idN'"
@@ -211,7 +211,7 @@ public class DeleteDaoImp implements DeleteDao, DeleteByCheckDao, OODelete {
      * 2.先查check[]中所有的表是否有值根据id，有值则不执行删除，并返回-1;
      * <p>
      *
-     * @param <T>
+     * @param <T> 泛型
      * @param dellc 表关联的对象类(删除对象)
      * @param dellCondition 表记录的主键集合 "id1,id2,id3,id4,i5...idN" 或为
      * "'id1','id2','id3','id4'.....'idN'"

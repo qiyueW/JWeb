@@ -21,7 +21,13 @@ import static system.base.jclass.ClassTypeCode.STRING;
  */
 final public class PropertiesFactory {
 
+    /**
+     * 默认信息的 声明
+     */
     private final PropertiesConfig pc;
+    /**
+     * 实例
+     */
     private final Object obj;
 
     public PropertiesFactory(PropertiesConfig pc) {
@@ -51,7 +57,7 @@ final public class PropertiesFactory {
                 value = rb.get(f.getName());
                 if (null != value) {
                     f.setAccessible(true);
-                   this.set(f,myobj, value.toString());
+                    this.set(f, myobj, value.toString());
                 }
             }
             return myobj;
