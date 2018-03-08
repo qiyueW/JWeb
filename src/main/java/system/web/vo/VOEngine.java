@@ -3,7 +3,6 @@ package system.web.vo;
 import java.util.Date;
 import java.util.List;
 import system.base.date.DateService;
-import system.web.JWeb;
 import system.web.WebContext;
 import system.web.vo.model.VO_Tool;
 import system.web.vo.model.VO_BeanModel;
@@ -21,17 +20,19 @@ public class VOEngine extends VO_Father implements VO_OneModel, VO_BeanModel,VO_
     public VOEngine(javax.servlet.http.HttpServletRequest request) {
         this.request = request;
     }
-
+    
     @Override
     public String getString(final String paramName) {
         String value = request.getParameter(paramName);
-        return null == value ? null : value;
+        return null == value ? null : value
+                .replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;")
+                ;
     }
 
     @Override
     public String getString(final String paramName, final String defaultValue) {
         String value = request.getParameter(paramName);
-        return null == value ? defaultValue : value;
+        return null == value ? defaultValue : value.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;");
     }
 
     @Override

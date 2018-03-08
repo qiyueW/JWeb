@@ -23,12 +23,20 @@ public abstract class VO_Father {
 
     protected static final JsonEngineModel JEM = HTTPJSONFactory.getJsonModel();
 
+    public static String replaceSS(final String str) {
+        return str.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;").replace("<", "&#60;");
+    }
+
+    public static String replaceSSByCheck(final String str) {
+        return null == str || str.isEmpty() ? str : str.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;").replace("<", "&#60;");
+    }
+
     final protected static <T> List<T> getListBySimpleJsonData(HttpServletRequest request, Class<T> x, final String requestName, final String dateformat, final String timeformat) {
         String str = request.getParameter(requestName);
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getListBySimpleJsonData(x, str, dateformat, timeformat);
+        return JEM.getListBySimpleJsonData(x, replaceSS(str), dateformat, timeformat);
     }
 
     final protected static <T> T getObjectBySimpleJsonData(HttpServletRequest request, Class<T> x, final String requestName, final String dateformat, final String timeformat) {
@@ -36,7 +44,7 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getObjectBySimpleJsonData(x, str, dateformat, timeformat);
+        return JEM.getObjectBySimpleJsonData(x, replaceSS(str), dateformat, timeformat);
     }
 
     final protected static <T> List<T> f_getListBySimpleJsonData__CI_TIME(HttpServletRequest request, Class<T> x, final String requestName) {
@@ -44,7 +52,7 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getListBySimpleJsonData_CI_TIME(x, str);
+        return JEM.getListBySimpleJsonData_CI_TIME(x, replaceSS(str));
     }
 
     final protected static <T> T f_getObjectBySimpleJsonData_CI_TIME(HttpServletRequest request, Class<T> x, final String requestName) {
@@ -52,22 +60,19 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getObjectBySimpleJsonData_CI_TIME(x, str);
+        return JEM.getObjectBySimpleJsonData_CI_TIME(x, replaceSS(str));
     }
 
     protected static final <T> T getObject(HttpServletRequest request, Class<T> x, final String dateformat, final String timeformat) {
         T obj;
         ClassInfo ci = ClassFactory.get(x);
-//        System.out.println(x.getName()+"//"+ci.table_name);
         try {
             obj = x.newInstance();
             for (FieldInfo fi : ci.fieldInfo) {
-//            	System.out.println(fi.fiel_name+"//"+dateformat+"//"+timeformat);
-                fi.setValue(obj, fi.get(request.getParameter(fi.fiel_name), dateformat, timeformat));
+                fi.setValue(obj, fi.get(replaceSSByCheck(request.getParameter(fi.fiel_name)), dateformat, timeformat));
             }
             return obj;
         } catch (IllegalArgumentException | IllegalAccessException | InstantiationException ex) {
-        	ex.printStackTrace();
         }
         return null;
     }
