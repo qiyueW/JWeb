@@ -9,6 +9,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface H {
 
+    /**
+     * 默认空“”
+     * @return 字符串
+     */
     public String value() default "";//模块
 
 }

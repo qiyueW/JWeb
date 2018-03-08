@@ -15,10 +15,19 @@ final public class IniFieldInfo {
 
     final private Class<?> cc;
 
+    /**
+     * 构造方法
+     * @param cc  Class参数类 
+     */
     public IniFieldInfo(Class<?> cc) {
         this.cc = cc;
     }
 
+    /**
+     * 取得其他相关一些信息
+     *
+     * @return ClassInfo
+     */
     public ClassInfo getClassInfo() {
         Table t = (Table) cc.getAnnotation(Table.class);
         ClassInfo s = new ClassInfo(
@@ -28,6 +37,11 @@ final public class IniFieldInfo {
     }
     private boolean unAuto = false;
 
+    /**
+     * 初始化Field
+     *
+     * @return FieldInfo[]
+     */
     private FieldInfo[] initField() {
 //        System.out.println(cc.getName() + "//" + cc.getDeclaredFields().length + "//////////////////////////");
         Field[] fs = cc.getDeclaredFields();
@@ -59,8 +73,8 @@ final public class IniFieldInfo {
                         ,
                          id.value().isEmpty() ? f.getName() : id.value()//表单列名
                         ,
-                         f
-                        ,isUnauto
+                         f,
+                        isUnauto
                 );
                 finfo[finfo_index++] = info;
             } else {
@@ -77,8 +91,8 @@ final public class IniFieldInfo {
                             ,
                              null == c || c.value().isEmpty() ? f.getName() : c.value()//表单列名
                             ,
-                             f
-                            ,isUnauto
+                             f,
+                            isUnauto
                     );
                     list.add(info);
                 } else {
@@ -94,8 +108,8 @@ final public class IniFieldInfo {
                             ,
                              null == c || c.value().isEmpty() ? f.getName() : c.value()//表单列名
                             ,
-                             f
-                            ,isUnauto
+                             f,
+                            isUnauto
                     );
                     list.add(info);
                 }

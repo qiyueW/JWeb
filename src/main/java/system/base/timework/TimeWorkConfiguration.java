@@ -57,7 +57,7 @@ public class TimeWorkConfiguration {
 	/**
 	 * 0-59秒，例如，每分钟的第45秒，执行一次，则输入 45
 	 * 
-	 * @param x
+	 * @param x int
 	 */
 	public void doEveryMinute(int x) {
 		if (x < 0 || x > 59)

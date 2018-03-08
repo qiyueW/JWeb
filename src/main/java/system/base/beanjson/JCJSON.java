@@ -10,6 +10,12 @@ import system.base.jclass.ClassInfo;
  */
 final public class JCJSON {
 
+    /**
+     * 处理简单对象成json格式的字符串
+     * @param <T> 泛型
+     * @param t 泛型实例
+     * @return  json格式的字符串
+     */
     final public static <T> String toSimpleJSON(T t) {
         if (null == t) {
             return "{}";
@@ -24,6 +30,13 @@ final public class JCJSON {
         return sb.toString();
     }
 
+    /**
+     * 
+     * 处理简单对象集合成json格式的字符串
+     * @param <T> 泛型
+     * @param list 泛型实例的集合
+     * @return  json格式的字符串
+     */
     final public static <T> String toSimpleJSON(List<T> list) {
         if (null == list || list.isEmpty()) {
             return "[]";

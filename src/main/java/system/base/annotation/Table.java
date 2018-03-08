@@ -12,6 +12,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Table {
-
+    /**
+     * 默认空“”
+     * @return 字符串
+     */
     public String value() default "";
 }

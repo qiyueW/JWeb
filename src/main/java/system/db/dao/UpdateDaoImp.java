@@ -22,7 +22,8 @@ public class UpdateDaoImp implements UpdateDao {
     /**
      * 更新对象。自动跳过为null的值
      *
-     * @param obj
+     * @param obj 实例
+     * @param unique 唯一的字段
      * @return boolean
      */
     @Override
@@ -61,7 +62,8 @@ public class UpdateDaoImp implements UpdateDao {
     /**
      * 更新对象obj(除id外，所有的属性值)
      *
-     * @param obj
+     * @param obj 对象实例
+     * @param unique 唯一的实例
      * @return boolean
      */
     @Override
@@ -102,7 +104,7 @@ public class UpdateDaoImp implements UpdateDao {
      *
      * @param obj //更新实体
      * @param rejectField 不更新的对象属性集体//“sdf,s2df,sdfdsfsd,sdfsdfdsf,sdfsdfsdfdf”
-     * @return
+     * @return int
      */
     @Override
     public int updateSome_reject(Object obj, String rejectField, String... unique) {
@@ -136,6 +138,13 @@ public class UpdateDaoImp implements UpdateDao {
         return 0;
     }
 
+    /**
+     * 更新实例 指定 允许的字段
+     * @param obj 实例
+     * @param alloyField 允许的字段
+     * @param unique 唯一字段
+     * @return int
+     */
     @Override
     public int updateSome_alloy(Object obj, String alloyField, String... unique) {
         if (unique.length == 0) {

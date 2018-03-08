@@ -25,8 +25,8 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * InsertSQL
      *
-     * @param obj
-     * @return String
+     * @param obj 对象实例
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String addOne(final Object obj) {
@@ -47,6 +47,11 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
         }
         return sb.toString();
     }
+    /**
+     * 添加一篥记录
+     * @param obj 对象实例
+     * @return  sql格式化的字段语句
+     */
      @Override
     final public String addOneByMyID(final Object obj) {
         ClassInfo ci = ClassFactory.get(obj.getClass());
@@ -70,7 +75,7 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 解析添加对象，同时返回ID
      *
-     * @param obj
+     * @param obj 操作实例
      * @return String[] [0]是sql,[1]是id
      */
     @Override
@@ -100,9 +105,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 生成批量操作语句
      *
-     * @param <T>
-     * @param objs
-     * @return
+     * @param <T> 泛型
+     * @param objs 对象实例集合
+     * @return 格式化的sql批处理语句 的字符串
      */
     @Override
     final public <T> String addVast(final List<T> objs) {
@@ -132,10 +137,10 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * addOne_replace
      *
-     * @param obj
+     * @param obj 类型实例
      * @param replaceName 执行要替换自定义值的字段
      * @param replaceValue 执行代换的值
-     * @return String
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public <T> String addOne_replace(final T obj, final String replaceName, final String replaceValue) {
@@ -173,11 +178,11 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 生成批量操作语句
      *
-     * @param <T>
-     * @param objs
-     * @param replaceName
-     * @param replaceValue
-     * @return
+     * @param <T> 泛型未定类型
+     * @param objs 对象集合
+     * @param replaceName 替换字段的名字
+     * @param replaceValue 替换的字段的值
+     * @return 格式化的sql语句的字符串
      */
     @Override
     final public <T> String addVast_replace(final List<T> objs, final String replaceName, final String replaceValue) {
@@ -222,9 +227,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 权限ID，删除一条记录
      *
-     * @param c
-     * @param id
-     * @return
+     * @param c 操作类型
+     * @param id 类关联的表的ID字段的值
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String dellByID(Class c, final String id) {
@@ -236,9 +241,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 通过条件删除
      *
-     * @param c
+     * @param c 类型
      * @param condition 条件，必须抱含Where在头。
-     * @return
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     public String dellByCondition(Class c, final String condition) {
@@ -249,9 +254,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 批量删除(ID形式:"id1,id2,id3............")
      *
-     * @param c
-     * @param ids
-     * @return
+     * @param c 类型
+     * @param ids 多个id组成的字符串
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String dellVast(Class c, final String ids) {
@@ -267,9 +272,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * ids为 'v1','v2','v3','v4'..
      *
-     * @param c
-     * @param ids
-     * @return
+     * @param c 类型
+     * @param ids 多个id组成的字符串
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String dellVast2(Class c, final String ids) {
@@ -281,9 +286,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 批量删除(ID形式：数组)
      *
-     * @param c
-     * @param ids
-     * @return
+     * @param c 类型
+     * @param ids 多个id组成的字符串
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String dellVast(Class c, final String[] ids) {
@@ -299,8 +304,8 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 清空表
      *
-     * @param c
-     * @return
+     * @param c 类型
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String dellAll(Class c) {
@@ -311,8 +316,8 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 更新对象。自动跳过为null的值
      *
-     * @param obj
-     * @return
+     * @param obj 实例
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String update_notNull(Object obj) {
@@ -338,7 +343,7 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
      * 更新正个对象各项属性(包括null)
      *
      * @param obj //更新实体
-     * @return
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String update_all(Object obj) {
@@ -363,7 +368,7 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
      *
      * @param obj //更新实体
      * @param rejectField 不更新的对象属性集体//“sdf,s2df,sdfdsfsd,sdfsdfdsf,sdfsdfsdfdf”
-     * @return
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String updateSome_reject(Object obj, final String rejectField) {
@@ -394,7 +399,7 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
      *
      * @param obj //更新实体
      * @param alloyField 更新的对象属性集体//“sdf,s2df,sdfdsfsd,sdfsdfdsf,sdfsdfsdfdf”
-     * @return
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String updateSome_alloy(Object obj, final String alloyField) {
@@ -422,9 +427,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询一条记录，根据ID
      *
-     * @param c
-     * @param id
-     * @return String
+     * @param c 类
+     * @param id 类关联的表的id的值
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectOneByID(Class c, final String id) {
@@ -436,9 +441,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询一条记录。根据条件
      *
-     * @param c
-     * @param condition
-     * @return String
+     * @param c 类
+     * @param condition 条件——字符串
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectOneByCondition(Class c, final String condition) {
@@ -449,8 +454,8 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询表的总记录数
      *
-     * @param c
-     * @return String
+     * @param c 类
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectCount(Class c) {
@@ -460,9 +465,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询表的记录数 根据条件
      *
-     * @param c
-     * @param condition
-     * @return String
+     * @param c 类
+     * @param condition 条件
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectCountByCondition(Class c, final String condition) {
@@ -472,8 +477,8 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询所有
      *
-     * @param c
-     * @return String
+     * @param c 类
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String select(Class c) {
@@ -483,9 +488,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询所有，并进行自定义排序
      *
-     * @param c
+     * @param c 类
      * @param orderby 对于数据库字段前缀：无！
-     * @return String
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String select(Class c, final String orderby) {
@@ -495,9 +500,9 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询所有 根据条件
      *
-     * @param c
-     * @param condition
-     * @return String
+     * @param c 类
+     * @param condition 条件
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectByCondition(Class c, final String condition) {
@@ -507,10 +512,10 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 查询所有，根据条件，并进行自定义排序
      *
-     * @param c
+     * @param c 类
      * @param condition 条件
      * @param orderby 对于数据库字段前缀：无！
-     * @return String
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectByCondition(Class c, final String condition, final String orderby) {
@@ -521,10 +526,10 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 分页查询
      *
-     * @param c
-     * @param page
-     * @param pageCount
-     * @return
+     * @param c 类
+     * @param page 页码
+     * @param pageCount 页的数据
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectVast(Class c, final int page, final int pageCount) {
@@ -534,11 +539,11 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 分页查询 并进行排序
      *
-     * @param c
-     * @param page
-     * @param pageCount
-     * @param orderby
-     * @return
+     * @param c 类
+     * @param page 页码
+     * @param pageCount 页的数据
+     * @param orderby 排序
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectVast(Class c, int page, int pageCount, final String orderby) {
@@ -550,11 +555,11 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 分页查询 根据条件
      *
-     * @param c
-     * @param page
-     * @param pageCount
-     * @param condition
-     * @return
+     * @param c 类
+     * @param page 页码
+     * @param pageCount 页的数据
+     * @param condition 条件
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectVastByCondition(Class c, final int page, final int pageCount, final String condition) {
@@ -566,12 +571,12 @@ final public class SQL implements Common, InsertSQL, DeleteSQL, UpdateSQL, Selec
     /**
      * 分页查询 根据条件 并进行排序
      *
-     * @param c
-     * @param page
-     * @param pageCount
-     * @param condition
-     * @param orderby
-     * @return
+     * @param c 类
+     * @param page 页码
+     * @param pageCount 页的数据
+     * @param condition 条件
+     * @param orderby 排序
+     * @return 格式化的SQL语句的字符串
      */
     @Override
     final public String selectVastByCondition(Class c, final int page, final int pageCount, final String condition, final String orderby) {

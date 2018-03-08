@@ -46,19 +46,4 @@ public class RunDate {
 	public int minus(Date d1, LocalDate d2) {
 		return (int)(DateService.TO.toLocalDate(d1).getLong(ChronoField.EPOCH_DAY) - d2.getLong(ChronoField.EPOCH_DAY) + 1);
 	}
-	
-	
-
-//	public static void main(String args[]) {
-//		String date1, date2;
-//		date1 = "2016-02-09";
-//		date2 = "2017-02-09";
-//
-//		LocalDate d1 = DateService.TO.toLocalDate(date1);
-//		LocalDate d2 = DateService.TO.toLocalDate(date2);
-//		Date dd1 = DateService.TO.toDate(date1);
-//		Date dd2 = DateService.TO.toDate(date2);
-//
-////		System.out.println(new RunDate().minus(d2, dd1));
-//	}
 }

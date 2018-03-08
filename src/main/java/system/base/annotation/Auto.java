@@ -18,5 +18,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Auto {
 
+    /**
+     * 默认值是1
+     *
+     * @return int
+     */
     public int value() default 1;
 }

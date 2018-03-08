@@ -21,12 +21,19 @@ public class StringTool {
      * 将字段串a,b,c 变成 字段串 'a','b','c'
      *
      * @param s 默认值为null或空，默认返回''
-     * @return
+     * @return String
      */
     public static final String replaceDToDDD(String s) {
         return null == s || s.isEmpty() ? "''" : "'" + s.replace(",", "','") + "'";
     }
 
+    /**
+     * 下载文件头的相关处理（暂不可用）
+     *
+     * @param req  HttpServletRequest
+     * @param downloadFilename String
+     * @return String
+     */
     public static final String downloadFileName_zhcnCode(HttpServletRequest req, String downloadFilename) {
         try {
             if (req.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {

@@ -62,13 +62,13 @@ public class LinkHMModel {
     /**
      * <p>
      * 转发数据请求方法。分两种：
-     * </p>
+     * 
      * <p>
      * 1.FORWARD(服务器端，转发其他web处理类进行处理客户端请求)
-     * </p>
+     * 
      * <p>
      * 2.REDIRECT(通知浏览器访问xx路径，只可URL带参)
-     * </p>
+     * 
      */
 //    public final int SEND_URL_WAY;
 

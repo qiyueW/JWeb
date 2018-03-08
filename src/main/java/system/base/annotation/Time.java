@@ -12,6 +12,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Time {
-
+    /**
+     * 默认空“”
+     * @return 字符串
+     */
     public String value() default "";
 }

@@ -23,6 +23,9 @@ public class Sc {
         this.sc();
     }
 
+    /**
+     * 扫描
+     */
     private void sc() {
         try {
             Enumeration<URL> rs = Thread.currentThread().getContextClassLoader().getResources("");
@@ -48,10 +51,21 @@ public class Sc {
 
     }
 
+    /**
+     * 处理特殊字段
+     *
+     * @param str 处理前的字符串
+     * @return 字符串
+     */
     public String mypath(String str) {
         return -1 == str.indexOf(":") ? str : (str.startsWith("/") ? str.substring(1) : str);
     }
 
+    /**
+     * 找到的文件，转java类
+     *
+     * @param f 文件
+     */
     private void addClass(File f) {
         try {
 //            System.out.println("file:" + f.getAbsolutePath() + "//" + f.getName());
@@ -61,6 +75,11 @@ public class Sc {
         }
     }
 
+    /**
+     * 对File进行处理
+     *
+     * @param f 文件
+     */
     private void doAddFile(File f) {
 //        System.out.println("file " + f.isDirectory() + "//" + f.getAbsolutePath());
         if (f.isDirectory()) {
