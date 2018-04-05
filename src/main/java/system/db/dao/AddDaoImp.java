@@ -166,22 +166,34 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
             return this.addOne(obj, unique);
         }
         ClassInfo ci = ClassFactory.get(obj.getClass());
-        if (null == ci.fieldInfo[0].get(this.adus.executeQueryOne(obj.getClass(), denyCondition), null)) {
+        Object dbObj=this.adus.executeQueryOne(obj.getClass(), denyCondition);
+        if(null!=dbObj&&null != ci.fieldInfo[0].get(dbObj, null)){
             return -1;
         }
+//        if (null == ci.fieldInfo[0].get(this.adus.executeQueryOne(obj.getClass(), denyCondition), null)) {
+//            return -1;
+//        }
         return this.addOne(obj, unique);
     }
 
-    @Override
-    public <T> int addVastByCondition(List<T> objs, String denyCondition, String... unique) {
-        if (null == denyCondition || denyCondition.isEmpty()) {
-            return this.addVast(objs, unique);
-        }
-        Class c = objs.get(0).getClass();
-        ClassInfo ci = ClassFactory.get(c);
-        if (null == ci.fieldInfo[0].get(this.adus.executeQueryOne(c, denyCondition), null)) {
-            return -1;
-        }
-        return this.addVast(objs, unique);
-    }
+//    @Override
+//    public <T> int addVastByCondition(List<T> objs, String denyCondition, String... unique) {
+//        if (null == denyCondition || denyCondition.isEmpty()) {
+//            return this.addVast(objs, unique);
+//        }
+//        Class c = objs.get(0).getClass();
+//        ClassInfo ci = ClassFactory.get(c);
+//        
+//        
+//        Object dbObj=this.adus.executeQueryOne(c, denyCondition);
+//        if(null!=dbObj&&null != ci.fieldInfo[0].get(dbObj, null)){
+//            return -1;
+//        }
+//        
+//        
+////        if (null == ci.fieldInfo[0].get(dbObj, null)) {
+////            return -1;
+////        }
+//        return this.addVast(objs, unique);
+//    }
 }

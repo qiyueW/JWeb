@@ -37,15 +37,15 @@ public interface AddDao {
      */
     public <T> int addVast(List<T> objs, String... unique);
 
-    /**
-     * 生成批量操作语句
-     *
-     * @param <T>
-     * @param objs
-     * @param denyCondition
-     * @param unique
-     * @return boolean
-     */
-    public <T> int addVastByCondition(List<T> objs,String denyCondition, String... unique);
-    
+//    /**
+//     * 生成批量操作语句
+//     *
+//     * @param <T>
+//     * @param objs
+//     * @param denyCondition
+//     * @param unique
+//     * @return boolean
+//     */
+//    public <T> int addVastByCondition(List<T> objs,String denyCondition, String... unique);
+//    
 }
