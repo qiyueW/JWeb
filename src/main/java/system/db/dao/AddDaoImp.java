@@ -166,8 +166,8 @@ public class AddDaoImp implements AddDao, Add_OO_OM_Dao {
             return this.addOne(obj, unique);
         }
         ClassInfo ci = ClassFactory.get(obj.getClass());
-        Object dbObj=this.adus.executeQueryOne(obj.getClass(), denyCondition);
-        if(null!=dbObj&&null != ci.fieldInfo[0].get(dbObj, null)){
+        Object dbObj = this.adus.executeQueryOne(obj.getClass(), sql.selectOneByCondition(obj.getClass(), denyCondition));
+        if (null != dbObj && null != ci.fieldInfo[0].get(dbObj, null)) {
             return -1;
         }
 //        if (null == ci.fieldInfo[0].get(this.adus.executeQueryOne(obj.getClass(), denyCondition), null)) {
