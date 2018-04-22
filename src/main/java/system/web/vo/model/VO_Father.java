@@ -36,7 +36,7 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getListBySimpleJsonData(x, replaceSS(str), dateformat, timeformat);
+        return JEM.getListBySimpleJsonData(x, str, dateformat, timeformat);
     }
 
     final protected static <T> T getObjectBySimpleJsonData(HttpServletRequest request, Class<T> x, final String requestName, final String dateformat, final String timeformat) {
@@ -44,7 +44,7 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getObjectBySimpleJsonData(x, replaceSS(str), dateformat, timeformat);
+        return JEM.getObjectBySimpleJsonData(x, str, dateformat, timeformat);
     }
 
     final protected static <T> List<T> f_getListBySimpleJsonData__CI_TIME(HttpServletRequest request, Class<T> x, final String requestName) {
@@ -52,7 +52,7 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getListBySimpleJsonData_CI_TIME(x, replaceSS(str));
+        return JEM.getListBySimpleJsonData_CI_TIME(x, str);
     }
 
     final protected static <T> T f_getObjectBySimpleJsonData_CI_TIME(HttpServletRequest request, Class<T> x, final String requestName) {
@@ -60,7 +60,7 @@ public abstract class VO_Father {
         if (null == str || str.isEmpty()) {
             return null;
         }
-        return JEM.getObjectBySimpleJsonData_CI_TIME(x, replaceSS(str));
+        return JEM.getObjectBySimpleJsonData_CI_TIME(x,str);
     }
 
     protected static final <T> T getObject(HttpServletRequest request, Class<T> x, final String dateformat, final String timeformat) {
