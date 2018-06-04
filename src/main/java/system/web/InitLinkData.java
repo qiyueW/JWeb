@@ -52,10 +52,12 @@ public class InitLinkData extends HMTool {
         log.setLogTitle("初始化服务请求资源");
         for (Class c : cs) {
             try {
+                //如果是原型servlet或servlet的封装
                 if ((HttpServlet.class.isAssignableFrom(c) && HttpServlet.class != c)
                         || (Servlet.class.isAssignableFrom(c) && Servlet.class != c)) {
                     servlet.DoH(c, lf, url);
                 } else {
+                //JWeb框架Control
                     this.DoH(c, lf);
                 }
             } catch (InstantiationException | IllegalAccessException ex) {
@@ -145,7 +147,7 @@ public class InitLinkData extends HMTool {
                             ,
                              filterObject.getFilterInstruction() + validate_instruction//KEY
                     ));
-                    log.putLog(1, c.getName() + "." + f.getName() + "映射URL ： " + url + "//指令：" + (filterObject.getFilterInstruction() + validate_instruction));
+//                    log.putLog(1, c.getName() + "." + f.getName() + "映射URL ： " + url + "//指令：" + (filterObject.getFilterInstruction() + validate_instruction));
 
                 }
             }
