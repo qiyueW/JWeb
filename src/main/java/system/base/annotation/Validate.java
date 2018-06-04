@@ -18,5 +18,5 @@ public @interface Validate {
      *
      * @return 类
      */
-    public Class value();
+    public Class[] value();
 }

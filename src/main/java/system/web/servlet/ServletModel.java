@@ -18,7 +18,7 @@ public class ServletModel {
      * @param instruction 指令1-15.
      */
     public ServletModel(
-            FilterModel[] fmTop, ValidateModel vm, FilterModel[] fmCenter, FilterModel[] fmButtom, int instruction
+            FilterModel[] fmTop, ValidateModel[] vm, FilterModel[] fmCenter, FilterModel[] fmButtom, int instruction
     ) {
         this.fmTop = fmTop;
         this.fmCenter = fmCenter;
@@ -42,7 +42,7 @@ public class ServletModel {
         }
     }
     public final FilterModel[] fmTop;
-    public final ValidateModel vm;
+    public final ValidateModel[] vm;
     public final FilterModel[] fmCenter;
     public final FilterModel[] fmButtom;
 

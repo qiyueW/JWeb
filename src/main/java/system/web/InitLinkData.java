@@ -22,7 +22,7 @@ import system.web.validate.model.ValidateModel;
  *
  * @author ik
  */
-public class InitLinkData extends HMTool{
+public class InitLinkData extends HMTool {
 
     private final system.web.hm.model.LinkHMData hp = new system.web.hm.model.LinkHMData();
     private final system.web.servlet.LinkServletData servlet = new system.web.servlet.LinkServletData();
@@ -34,7 +34,7 @@ public class InitLinkData extends HMTool{
     String url = ""; //存入@H+@M的完整路径
     M at_M;//@M的数据
     Validate at_Validate;//@V的数据
-    ValidateModel vm = null; //校验对象的数据中心
+    ValidateModel[] vm = null; //校验对象的数据中心
     int validate_instruction = 0;//校验指令
 //    int method_instruction = 0;//方法指令（静态方法=16，对象方法=0）
 
@@ -99,11 +99,23 @@ public class InitLinkData extends HMTool{
                             ? ((JWFilter) f.getAnnotation(JWFilter.class)).value()
                             : null
                     );
-                    if (null != at_Validate && ValidateModel.class.isAssignableFrom(at_Validate.value())) {
-                        validate.doinitData(at_Validate.value());
-                        vm = validate.get(at_Validate.value());
-                        validate_instruction = XY_Instruction.VALIDATE;
+
+                    if (null != at_Validate) {//发现用户定义的检验类
+                        vm = new ValidateModel[at_Validate.value().length];
+                        for (int i = 0; i < at_Validate.value().length; i++) {
+                            if (ValidateModel.class.isAssignableFrom(at_Validate.value()[i])) {
+                                validate.doinitData(at_Validate.value()[i]);//初始化成实例
+                                vm[i] = validate.get(at_Validate.value()[i]);//取出关联的实例
+                                validate_instruction = XY_Instruction.VALIDATE;//加入指令代码
+                            }
+                        }
                     }
+
+//                    if (null != at_Validate && ValidateModel.class.isAssignableFrom(at_Validate.value())) {
+//                        validate.doinitData(at_Validate.value());
+//                        vm = validate.get(at_Validate.value());
+//                        validate_instruction = XY_Instruction.VALIDATE;
+//                    }
 
                     /**
                      *
@@ -139,8 +151,6 @@ public class InitLinkData extends HMTool{
             }
         }
     }
-
-    
 
     private boolean isStaticM(Method m) {
         return m.getParameterCount() == 1 && m.getParameterTypes()[0].equals(JWeb.class);

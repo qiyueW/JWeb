@@ -23,7 +23,7 @@ public class LinkHMModel {
      * @param instruction 指令1-15.
      */
     public LinkHMModel(
-            FilterModel[] fmTop, ValidateModel vm, FilterModel[] fmCenter, Class hClass, Method method, boolean isStaticMethod
+            FilterModel[] fmTop, ValidateModel[] vm, FilterModel[] fmCenter, Class hClass, Method method, boolean isStaticMethod
             , FilterModel[] fmButtom, int instruction
     ) {
         this.hClass = hClass;
@@ -55,7 +55,7 @@ public class LinkHMModel {
     public final Method method;
 
     public final FilterModel[] fmTop;
-    public final ValidateModel vm;
+    public final ValidateModel[] vm;
     public final FilterModel[] fmCenter;
     public final FilterModel[] fmButtom;
     public final boolean isStaticMethod;

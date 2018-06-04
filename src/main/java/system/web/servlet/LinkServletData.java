@@ -34,7 +34,7 @@ final public class LinkServletData {
         return requestURLMap.get(servletURL);
     }
 
-    ValidateModel vm = null; //校验对象的数据中心
+    ValidateModel vm[] = null; //校验对象的数据中心
     int validate_instruction = 0;//校验指令
 //    int method_instruction = 0;//方法指令（静态方法=16，对象方法=0）
 
@@ -53,11 +53,17 @@ final public class LinkServletData {
             }
             //执行过滤器判断
             if (null != c.getAnnotation(Validate.class)) {
+
                 Validate at_Validate = (Validate) c.getAnnotation(Validate.class);
-                if (null != at_Validate && ValidateModel.class.isAssignableFrom(at_Validate.value())) {
-                    validate.doinitData(at_Validate.value());
-                    vm = validate.get(at_Validate.value());
-                    validate_instruction = XY_Instruction.VALIDATE;
+                if (null != at_Validate) {//发现用户定义的检验类
+                    vm = new ValidateModel[at_Validate.value().length];
+                    for (int i = 0; i < at_Validate.value().length; i++) {
+                        if (ValidateModel.class.isAssignableFrom(at_Validate.value()[i])) {
+                            validate.doinitData(at_Validate.value()[i]);//初始化成实例
+                            vm[i] = validate.get(at_Validate.value()[i]);//取出关联的实例
+                            validate_instruction = XY_Instruction.VALIDATE;//加入指令代码
+                        }
+                    }
                 }
             }
 
@@ -82,10 +88,14 @@ final public class LinkServletData {
                      */
                     requestURLMap.put(url, new ServletModel(
                             filterObject.getHMFilterModel_TOP()//顶部过滤链
-                            , vm //执行校验
-                            , filterObject.getHMFilterModel_CENTER()//中部过滤链
-                            , filterObject.getHMFilterModel_BUTTOM() //底部过滤链
-                            , filterObject.getFilterInstruction() + validate_instruction//KEY
+                            ,
+                             vm //执行校验
+                            ,
+                             filterObject.getHMFilterModel_CENTER()//中部过滤链
+                            ,
+                             filterObject.getHMFilterModel_BUTTOM() //底部过滤链
+                            ,
+                             filterObject.getFilterInstruction() + validate_instruction//KEY
                     ));
                     openServlet = true;
                     log.putLog(1, c.getName() + "映射URL ： " + url + "//指令：" + (filterObject.getFilterInstruction() + validate_instruction));

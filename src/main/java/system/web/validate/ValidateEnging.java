@@ -23,10 +23,10 @@ final public class ValidateEnging {
         PARAM = vef.getParamValidateEngineModel();
     }
 
-    public static boolean doValidateAndResultError(JWeb jw, ValidateModel vm) throws ServletException, IOException, IllegalArgumentException, IllegalAccessException {
+    public static boolean doValidateAndResultError(JWeb jw, ValidateModel[] vm) throws ServletException, IOException, IllegalArgumentException, IllegalAccessException {
 
-        return null==vm.getValidateJsonModel()
-                ? PARAM.doValidateAndResultError(jw, vm)
-                : JSON.doValidateAndResultError(jw, vm);
+        return null==vm[0].getValidateJsonModel()
+                ? PARAM.doValidateAndResultError(jw, vm[0])
+                : JSON.doValidateAndResultError(jw, vm[0]);
     }
 }
