@@ -30,14 +30,26 @@ final public class ValidateEnging {
             case 1:
                 return null == vm[0].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[0]) : JSON.doValidateAndResultError(jw, vm[0]);
             case 2:
-                //第1个为错（true时），或第2个为错时（true时）
-                return null == vm[0].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[0]) : JSON.doValidateAndResultError(jw, vm[0])
-                        || null == vm[1].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[1]) : JSON.doValidateAndResultError(jw, vm[1]);
+                if (null == vm[0].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[0]) : JSON.doValidateAndResultError(jw, vm[0])) {
+                    return true;
+                }
+                if (null == vm[1].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[1]) : JSON.doValidateAndResultError(jw, vm[1])) {
+                    return true;
+                }
+                return false;
             case 3:
                 //第1个为错（true时），或第2个为错时（true时）或第3个为错时（true时）
-                return null == vm[0].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[0]) : JSON.doValidateAndResultError(jw, vm[0])
-                        || null == vm[1].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[1]) : JSON.doValidateAndResultError(jw, vm[1])
-                        || null == vm[2].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[2]) : JSON.doValidateAndResultError(jw, vm[2]);
+                if (null == vm[0].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[0]) : JSON.doValidateAndResultError(jw, vm[0])) {
+                    return true;
+                }
+                if (null == vm[1].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[1]) : JSON.doValidateAndResultError(jw, vm[1])) {
+                    return true;
+                }
+                if (null == vm[2].getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vm[2]) : JSON.doValidateAndResultError(jw, vm[2])) {
+                    return true;
+                }
+                return false;
+
             default: {
                 for (ValidateModel vobj : vm) {
                     if (null == vobj.getValidateJsonModel() ? PARAM.doValidateAndResultError(jw, vobj) : JSON.doValidateAndResultError(jw, vobj)) {

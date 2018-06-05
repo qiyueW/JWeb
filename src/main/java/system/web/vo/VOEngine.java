@@ -25,14 +25,14 @@ public class VOEngine extends VO_Father implements VO_OneModel, VO_BeanModel,VO_
     public String getString(final String paramName) {
         String value = request.getParameter(paramName);
         return null == value ? null : value
-                .replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;")
+                .replace("'", "&#39;").replace("\\", "&#92;")
                 ;
     }
 
     @Override
     public String getString(final String paramName, final String defaultValue) {
         String value = request.getParameter(paramName);
-        return null == value ? defaultValue : value.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;");
+        return null == value ? defaultValue : value.replace("'", "&#39;").replace("\\", "&#92;");
     }
 
     @Override
