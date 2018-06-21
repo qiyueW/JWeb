@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.qiyueW</groupId>
     <artifactId>JWeb</artifactId>
-    <version>2.0</version>
+    <version>2.0-final</version>
     <packaging>jar</packaging>
     <name>JWeb</name>
     <description>JWeb so easy!</description>
@@ -24,7 +24,7 @@
     <developers>
         <developer>
             <name>wangchunzi</name>
-            <email>pankeng1988w@163.com</email>
+            <email>pankeng1988w@aliyun.com</email>
             <organization>wangchunzi</organization>
             <url>https://github.com/qiyueW/JWeb</url>
             <roles>
@@ -69,12 +69,12 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.40</version>
-        </dependency>
-        <dependency>
+        </dependency>-->
+<!--        <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
@@ -83,7 +83,7 @@
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>
