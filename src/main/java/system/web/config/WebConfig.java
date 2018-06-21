@@ -58,6 +58,7 @@ public class WebConfig {
     public final Class<? extends system.web.validate.config.JsonValidateEngineModel> validateEngine_json;//= system.web.validate.config.DefaultValidateEngine_Json.class;
 
     public final Class<? extends system.web.validate.config.ParamValidateEngineModel> validateEngine_param;
+    public final boolean DEV;
 
     public WebConfig(system.web.config.temp.WebConfig temp) {
         this.ENCODE = temp.ENCODE;
@@ -86,6 +87,7 @@ public class WebConfig {
         this.jsonEngineModel = temp.jsonEngineModel;
         this.validateEngine_json = temp.validateEngine_json;
         this.validateEngine_param = temp.validateEngine_param;
+        this.DEV = temp.DEV;
     }
 
 }

@@ -13,6 +13,7 @@ public class WebConfig {
 
     public String CONTEXTPATH_KEY = "path_home";
 
+    public boolean DEV=false;
     /**
      * 默认为空时，表示拦截所有的。
      * <p>

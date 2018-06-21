@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import system.web.JWeb;
+import system.web.WebContext;
 import system.web.filter.chain.FilterEngine;
 import system.web.hm.model.LinkHMData;
 import system.web.hm.model.LinkHMModel;
@@ -18,6 +19,7 @@ import system.web.validate.ValidateEnging;
 final public class HMModelEngine {
 
     private static final FilterEngine filterEngine = new FilterEngine();
+    private final static boolean DEV = WebContext.getWebContext().webConfig.DEV;
 ////跳转时，产生的异常
 
     public static final void doLinkEngine(final String url, JWeb jw)
@@ -26,6 +28,9 @@ final public class HMModelEngine {
             LinkHMModel o = LinkHMData.getLinkModel(url);
             if (null == o) {
                 return;
+            }
+            if (DEV) {
+                System.out.println("\n请求地址：" + url + "\n请求方法：" + o.method.getName());
             }
             switch (o.instruction) {
                 case 0:

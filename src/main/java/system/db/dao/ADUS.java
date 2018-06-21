@@ -14,6 +14,7 @@ import system.db.pool.ADUPool;
 import system.db.pool.ADUSession;
 import system.db.pool.SPool;
 import system.db.pool.SSession;
+import system.web.WebContext;
 
 /**
  *
@@ -23,6 +24,7 @@ final public class ADUS implements ADUSDao {
 
     private final ADUPool adupool;
     private final SPool spool;
+    private final static boolean DEV = WebContext.getWebContext().webConfig.DEV;
 
     public ADUS(final ADUPool adupool, final SPool spool) {
         this.adupool = adupool;
@@ -39,6 +41,9 @@ final public class ADUS implements ADUSDao {
      */
     @Override
     final public <T> T executeQueryOne(Class<T> c, final String sql) {
+        if (DEV) {
+            System.out.println(sql);
+        }
 //        System.out.println("In the queryOne:" + sql);
         ClassInfo ci = ClassFactory.get(c);
         T obj;
@@ -81,6 +86,9 @@ final public class ADUS implements ADUSDao {
      */
     @Override
     final public <T> List<T> executeQueryVast(Class<T> c, final String sql) {
+        if (DEV) {
+            System.out.println(sql);
+        }
 //        System.out.println(sql);
         ClassInfo ci = ClassFactory.get(c);
         T obj;
@@ -121,7 +129,9 @@ final public class ADUS implements ADUSDao {
      */
     @Override
     final public int executeQueryCount(final String sql) {
-//        System.out.println(sql);
+        if (DEV) {
+            System.out.println(sql);
+        }
         Statement statement = null;
         ResultSet select;
         SSession session = spool.getSSession();
@@ -144,7 +154,9 @@ final public class ADUS implements ADUSDao {
 
     @Override
     final public int executeUpdate(String sql) {
-//        System.out.println(sql);
+        if (DEV) {
+            System.out.println(sql);
+        }
         ADUSession as = this.adupool.getIndexConnection();
         try {
             Statement cs = as.getConn().createStatement();
@@ -168,12 +180,13 @@ final public class ADUS implements ADUSDao {
 
     @Override
     final public int[] executeBatch(String... SQL) {
-//        System.out.println("=========事务管理-展示SQL 上==========\n");
-//        for (String temp : SQL) {
-//            System.out.println(temp + "\n");
-//        }
-//        System.out.println("=========事务管理-展示SQL 下==========\n");
-
+        if (DEV) {
+            System.out.println("=========事务管理-展示SQL 上==========\n");
+            for (String temp : SQL) {
+                System.out.println(temp + "\n");
+            }
+            System.out.println("=========事务管理-展示SQL 下==========\n");
+        }
         ADUSession as = this.adupool.getIndexConnection();
         try {
             Statement cs = as.getConn().createStatement();
@@ -188,9 +201,9 @@ final public class ADUS implements ADUSDao {
             DOEFactory.getDOE().executeBatch(SQL);
             try {
                 as.getConn().rollback();
-               DOEFactory.getDOE().executeBatch_rollback_success(SQL);
+                DOEFactory.getDOE().executeBatch_rollback_success(SQL);
             } catch (SQLException ex1) {
-               DOEFactory.getDOE().executeBatch_rollback_error(SQL);
+                DOEFactory.getDOE().executeBatch_rollback_error(SQL);
             }
         } finally {
             as.close();
