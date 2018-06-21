@@ -30,7 +30,7 @@ final public class HMModelEngine {
                 return;
             }
             if (DEV) {
-                System.out.println("\n请求地址：" + url + "\n请求方法：" + o.method.getName());
+                System.out.println("\n请求路径：" + url + "\n请求方法：" + o.hClass.getName() +"."+ o.method.getName()+"()");
             }
             switch (o.instruction) {
                 case 0:
