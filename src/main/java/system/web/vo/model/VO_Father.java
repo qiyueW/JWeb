@@ -28,7 +28,7 @@ public abstract class VO_Father {
     }
 
     public static String replaceSSByCheck(final String str) {
-        return null == str || str.isEmpty() ? str : str.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;").replace("<", "&#60;");
+        return null == str || str.isEmpty() ? str : str.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;").replace("<src", "&#60;src");
     }
 
     final protected static <T> List<T> getListBySimpleJsonData(HttpServletRequest request, Class<T> x, final String requestName, final String dateformat, final String timeformat) {
