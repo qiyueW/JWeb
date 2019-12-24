@@ -24,11 +24,11 @@ public abstract class VO_Father {
     protected static final JsonEngineModel JEM = HTTPJSONFactory.getJsonModel();
 
     public static String replaceSS(final String str) {
-        return str.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;").replace("<", "&#60;");
+        return str.replace("'", "&#39;").replace("\\", "&#92;").replace("<src", "&#60;src");
     }
 
     public static String replaceSSByCheck(final String str) {
-        return null == str || str.isEmpty() ? str : str.replace("'", "&#39;").replace("\"", "&#34;").replace("\\", "&#92;").replace("<src", "&#60;src");
+        return null == str || str.isEmpty() ? str : str.replace("'", "&#39;").replace("\\", "&#92;").replace("<src", "&#60;src");
     }
 
     final protected static <T> List<T> getListBySimpleJsonData(HttpServletRequest request, Class<T> x, final String requestName, final String dateformat, final String timeformat) {
